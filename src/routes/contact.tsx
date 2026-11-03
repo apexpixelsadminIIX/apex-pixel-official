@@ -118,7 +118,7 @@ function ContactPage() {
       <section className="tone-light pb-20">
         <div className="container-apx grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
           {/* Left: enquiry form */}
-          <div className="card-light p-6 md:p-8">
+          <Reveal className="card-light p-6 md:p-8">
             <h2 className="font-display text-2xl font-bold tracking-tight">
               Send an enquiry
             </h2>
@@ -243,11 +243,11 @@ function ContactPage() {
                 </p>
               </div>
             </form>
-          </div>
+          </Reveal>
 
           {/* Right: three stacked cards */}
-          <div className="flex flex-col gap-4">
-            <div className="card-light p-6">
+          <Stagger className="flex flex-col gap-4">
+            <StaggerItem className="card-light card-lift p-6">
               <span className="grid h-11 w-11 place-items-center rounded-full bg-green text-white">
                 <WhatsAppIcon className="h-5 w-5" />
               </span>
@@ -260,9 +260,9 @@ function ContactPage() {
                   Message on WhatsApp
                 </ButtonLink>
               </div>
-            </div>
+            </StaggerItem>
 
-            <div className="card-light p-6">
+            <StaggerItem className="card-light card-lift p-6">
               <span className="grid h-11 w-11 place-items-center rounded-full bg-orange text-ink">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden>
                   <path d="M8 2v4M16 2v4" /><rect width="18" height="18" x="3" y="4" rx="2" /><path d="M3 10h18" />
