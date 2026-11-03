@@ -16,5 +16,6 @@
 - Every editable business fact (contacts, prices, packages, FAQs, nav) lives in src/config/site.ts; components import from it and never hard-code facts.
 - Design tokens (exact brand hexes, section tones, stripe motif utilities) are defined in src/styles.css; sections use tone-dark/tone-light instead of per-component colors. Orange is the only button accent and always carries dark ink text.
 - Inner routes currently render PlaceholderPage; later prompts replace each placeholder but must keep the route's head() metadata.
+- Motion lives in shared components: scroll reveals use Reveal/Stagger/StaggerItem from src/components/site/Reveal.tsx; hero effects in HeroGridCanvas.tsx; route transitions via AnimatedOutlet in __root.tsx under a global MotionConfig reducedMotion="user". Animate only transform and opacity (CSS utilities card-lift, link-underline, marquee-track in styles.css); every animation needs a prefers-reduced-motion fallback.
 - The multi-prompt build plan is tracked in roadmap.md.
 <!-- APEX PIXELS:END -->
