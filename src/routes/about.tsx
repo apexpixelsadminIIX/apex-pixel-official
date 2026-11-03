@@ -129,46 +129,50 @@ function AboutPage() {
       {/* 4. The founder (light) */}
       <section className="tone-light pb-20">
         <div className="container-apx">
-          <div className="card-light flex max-w-3xl flex-col items-start gap-6 p-6 sm:flex-row sm:items-center md:p-8">
-            <OptionalImage
-              src={founder.photo}
-              alt={founder.name}
-              className="h-28 w-28 shrink-0 rounded-full object-cover"
-            />
-            <div>
-              <h2 className="font-display text-2xl font-bold tracking-tight">
-                {founder.name}
-              </h2>
-              <p className="text-sm font-semibold uppercase tracking-widest text-orange">
-                {founder.title}
-              </p>
-              <p className="muted mt-3 text-sm">{founder.text}</p>
+          <Reveal>
+            <div className="card-light flex max-w-3xl flex-col items-start gap-6 p-6 sm:flex-row sm:items-center md:p-8">
+              <OptionalImage
+                src={founder.photo}
+                alt={founder.name}
+                className="h-28 w-28 shrink-0 rounded-full object-cover"
+              />
+              <div>
+                <h2 className="font-display text-2xl font-bold tracking-tight">
+                  {founder.name}
+                </h2>
+                <p className="text-sm font-semibold uppercase tracking-widest text-orange">
+                  {founder.title}
+                </p>
+                <p className="muted mt-3 text-sm">{founder.text}</p>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* 5. Find Apex Pixels (dark) */}
       <section className="tone-dark section-pad">
         <div className="container-apx">
-          <h2>Find Apex Pixels</h2>
-          <p className="muted mt-4 max-w-xl">{site.address}</p>
-          <p className="mt-3">
-            <a
-              href={`mailto:${site.email}`}
-              className="text-sm text-on-dark underline-offset-4 transition-colors hover:text-orange hover:underline"
-            >
-              {site.email}
-            </a>
-          </p>
-          <div className="mt-6">
-            <ButtonLink href={mapsUrl} size="sm">
-              View on Google Maps
-            </ButtonLink>
-          </div>
-          <div className="mt-16">
+          <Reveal>
+            <h2>Find Apex Pixels</h2>
+            <p className="muted mt-4 max-w-xl">{site.address}</p>
+            <p className="mt-3">
+              <a
+                href={`mailto:${site.email}`}
+                className="link-underline text-sm text-on-dark transition-colors hover:text-orange"
+              >
+                {site.email}
+              </a>
+            </p>
+            <div className="mt-6">
+              <ButtonLink href={mapsUrl} size="sm">
+                View on Google Maps
+              </ButtonLink>
+            </div>
+          </Reveal>
+          <Reveal className="mt-16">
             <ContactTrio tone="dark" />
-          </div>
+          </Reveal>
         </div>
       </section>
     </main>
