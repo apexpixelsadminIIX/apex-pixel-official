@@ -4,10 +4,10 @@ import * as React from "react";
 type SmartLinkProps = {
   href: string;
   children: React.ReactNode;
-  className?: string;
-  activeClassName?: string;
-  onClick?: () => void;
-  ariaLabel?: string;
+  className?: string | undefined;
+  activeClassName?: string | undefined;
+  onClick?: (() => void) | undefined;
+  ariaLabel?: string | undefined;
 };
 
 /**
@@ -37,12 +37,16 @@ export function SmartLink({
     );
   }
 
-  const [pathWithQuery, hash] = href.split("#");
-  const [pathname, query] = pathWithQuery.split("?");
+  const [pathWithQuery, hash] = href.split("#") as [string, string | undefined];
+  const [rawPathname, query] = pathWithQuery.split("?") as [
+    string,
+    string | undefined,
+  ];
+  const pathname = rawPathname || "/";
   const search = query
     ? Object.fromEntries(new URLSearchParams(query))
     : undefined;
-  const to = (pathname || "/") as React.ComponentProps<typeof Link>["to"];
+  const to = pathname as React.ComponentProps<typeof Link>["to"];
 
   return (
     <Link

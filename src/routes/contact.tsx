@@ -4,8 +4,8 @@ import { PlaceholderPage } from "@/components/site/PlaceholderPage";
 
 export const Route = createFileRoute("/contact")({
   validateSearch: (search: Record<string, unknown>) => ({
-    package: typeof search.package === "string" ? search.package : undefined,
-    intent: typeof search.intent === "string" ? search.intent : undefined,
+    package: typeof search["package"] === "string" ? search["package"] : undefined,
+    intent: typeof search["intent"] === "string" ? search["intent"] : undefined,
   }),
   component: () => (
     <PlaceholderPage
