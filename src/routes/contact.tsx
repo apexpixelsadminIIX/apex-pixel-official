@@ -4,6 +4,7 @@ import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 
 import { ButtonLink } from "@/components/site/ButtonLink";
+import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import { SmartLink } from "@/components/site/SmartLink";
 import { Stripes } from "@/components/site/Stripes";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
@@ -106,9 +107,11 @@ function ContactPage() {
     <main>
       <header className="tone-light section-pad pb-14 pt-36 md:pb-16 md:pt-44">
         <div className="container-apx">
-          <Stripes count={6} itemClassName="h-2.5 w-9" />
-          <h1 className="mt-6">Get in touch</h1>
-          <p className="muted mt-4 max-w-2xl">Pick whichever way is easiest.</p>
+          <Reveal>
+            <Stripes count={6} itemClassName="h-2.5 w-9" />
+            <h1 className="mt-6">Get in touch</h1>
+            <p className="muted mt-4 max-w-2xl">Pick whichever way is easiest.</p>
+          </Reveal>
         </div>
       </header>
 
