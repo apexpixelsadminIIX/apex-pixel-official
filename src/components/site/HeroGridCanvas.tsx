@@ -52,8 +52,8 @@ export function HeroGridCanvas() {
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);
 
-    const io = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
+    const io = new IntersectionObserver((entries) => {
+      visible = entries[0]?.isIntersecting ?? visible;
       if (visible) start();
     });
     io.observe(canvas);
