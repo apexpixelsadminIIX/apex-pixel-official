@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { Reveal } from "@/components/site/Reveal";
 import { lastUpdated, site } from "@/config/site";
 
 export const Route = createFileRoute("/privacy")({
@@ -27,6 +28,7 @@ function PrivacyPage() {
   return (
     <main className="tone-light section-pad pt-36 md:pt-44">
       <article className="container-apx max-w-3xl">
+        <Reveal>
         <h1>Privacy</h1>
         <p className="muted mt-2 text-sm">Last updated: {lastUpdated}</p>
 
