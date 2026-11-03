@@ -19,6 +19,7 @@ export const buttonVariants = cva(
         "outline-light": "border border-ink/20 text-on-light hover:bg-ink/5",
         "ghost-dark": "text-on-dark-muted hover:text-orange",
         "ghost-light": "text-on-light-muted hover:text-orange",
+        bare: "",
       },
       size: {
         sm: "h-9 px-4 text-sm",

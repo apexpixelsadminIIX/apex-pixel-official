@@ -30,7 +30,7 @@ export function ContactTrio({ tone = "dark" }: { tone?: "dark" | "light" }) {
         <span className={textClass}>Opens a WhatsApp chat straight away.</span>
       </a>
 
-      <ButtonLink href={bookingHref} className={cn(cardClass, "text-left")}>
+      <ButtonLink href={bookingHref} variant="bare" className={cn(cardClass, "text-left")}>
         <span className="grid h-11 w-11 place-items-center rounded-full bg-orange text-ink">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden>
             <path d="M8 2v4M16 2v4" /><rect width="18" height="18" x="3" y="4" rx="2" /><path d="M3 10h18" />
@@ -40,7 +40,7 @@ export function ContactTrio({ tone = "dark" }: { tone?: "dark" | "light" }) {
         <span className={textClass}>A free call to talk through the project.</span>
       </ButtonLink>
 
-      <ButtonLink href="/contact" variant="ghost-light" className={cn(cardClass, "text-left")}>
+      <ButtonLink href="/contact" variant="bare" className={cn(cardClass, "text-left")}>
         <span className="grid h-11 w-11 place-items-center rounded-full bg-navy text-white">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden>
             <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" />
