@@ -283,25 +283,29 @@ function AfterLaunch() {
   return (
     <section className="tone-dark section-pad">
       <div className="container-apx">
-        <h2>After launch</h2>
-        <p className="muted mt-4 max-w-2xl">
-          Every launch is followed by a period of free bug fixes. After that, a
-          care plan keeps the site or app healthy.
-        </p>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <Reveal>
+          <h2>After launch</h2>
+          <p className="muted mt-4 max-w-2xl">
+            Every launch is followed by a period of free bug fixes. After that, a
+            care plan keeps the site or app healthy.
+          </p>
+        </Reveal>
+        <Stagger className="mt-10 grid gap-4 md:grid-cols-3">
           {carePlans.map((plan) => (
-            <article key={plan.id} className="card-dark flex flex-col p-6">
-              <h3 className="font-display text-xl font-semibold">{plan.name}</h3>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-on-dark-muted">
-                {plan.forWhom}
-              </p>
-              <p className="mt-3 font-display text-lg font-bold text-orange">
-                {plan.price}
-              </p>
-              <p className="muted mt-3 text-sm">{plan.text}</p>
-            </article>
+            <StaggerItem key={plan.id} className="h-full">
+              <article className="card-dark card-lift flex h-full flex-col p-6">
+                <h3 className="font-display text-xl font-semibold">{plan.name}</h3>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-on-dark-muted">
+                  {plan.forWhom}
+                </p>
+                <p className="mt-3 font-display text-lg font-bold text-orange">
+                  {plan.price}
+                </p>
+                <p className="muted mt-3 text-sm">{plan.text}</p>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
@@ -313,21 +317,23 @@ function ExtrasSection() {
   return (
     <section className="tone-light section-pad">
       <div className="container-apx">
-        <h2 className="font-display text-3xl font-bold tracking-tight">Extras</h2>
-        <div className="mt-8 max-w-3xl overflow-hidden rounded-2xl border border-ink/10 bg-white">
-          <table className="w-full text-sm">
-            <tbody className="divide-y divide-ink/10">
-              {extras.map((extra) => (
-                <tr key={extra.name}>
-                  <td className="px-5 py-3.5 font-medium">{extra.name}</td>
-                  <td className="px-5 py-3.5 text-right text-on-light-muted">
-                    {extra.price}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <Reveal>
+          <h2 className="font-display text-3xl font-bold tracking-tight">Extras</h2>
+          <div className="mt-8 max-w-3xl overflow-hidden rounded-2xl border border-ink/10 bg-white">
+            <table className="w-full text-sm">
+              <tbody className="divide-y divide-ink/10">
+                {extras.map((extra) => (
+                  <tr key={extra.name}>
+                    <td className="px-5 py-3.5 font-medium">{extra.name}</td>
+                    <td className="px-5 py-3.5 text-right text-on-light-muted">
+                      {extra.price}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -339,7 +345,9 @@ function PricingSection() {
   return (
     <section className="tone-dark section-pad">
       <div className="container-apx">
-        <h2>Clear starting prices</h2>
+        <Reveal>
+          <h2>Clear starting prices</h2>
+        </Reveal>
         <PricingGrid showFeatures />
       </div>
     </section>
@@ -350,7 +358,9 @@ function FinalTrio() {
   return (
     <section className="tone-dark pb-20">
       <div className="container-apx">
-        <ContactTrio tone="dark" />
+        <Reveal>
+          <ContactTrio tone="dark" />
+        </Reveal>
       </div>
     </section>
   );
