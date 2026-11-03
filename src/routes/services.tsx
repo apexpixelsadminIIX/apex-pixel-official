@@ -4,6 +4,7 @@ import { Check } from "lucide-react";
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { ContactTrio } from "@/components/site/ContactTrio";
 import { PackageCard, PricingGrid } from "@/components/site/PricingGrid";
+import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import { Stripes } from "@/components/site/Stripes";
 import {
   carePlans,
@@ -62,9 +63,11 @@ function PageHeader({
   return (
     <header className="tone-light section-pad pb-14 pt-36 md:pb-16 md:pt-44">
       <div className="container-apx">
-        <Stripes count={6} itemClassName="h-2.5 w-9" />
-        <h1 className="mt-6">{title}</h1>
-        {sub && <p className="muted mt-4 max-w-2xl">{sub}</p>}
+        <Reveal>
+          <Stripes count={6} itemClassName="h-2.5 w-9" />
+          <h1 className="mt-6">{title}</h1>
+          {sub && <p className="muted mt-4 max-w-2xl">{sub}</p>}
+        </Reveal>
       </div>
     </header>
   );
@@ -146,11 +149,13 @@ function WebsitesSection() {
   return (
     <section id="websites" className="tone-light section-pad scroll-mt-28">
       <div className="container-apx">
-        <h2 className="font-display text-3xl font-bold tracking-tight">
-          {websites?.title}
-        </h2>
-        <p className="muted mt-4 max-w-2xl">{websites?.description}</p>
-        <GoodFor text={websites?.goodFor ?? ""} tone="light" />
+        <Reveal>
+          <h2 className="font-display text-3xl font-bold tracking-tight">
+            {websites?.title}
+          </h2>
+          <p className="muted mt-4 max-w-2xl">{websites?.description}</p>
+          <GoodFor text={websites?.goodFor ?? ""} tone="light" />
+        </Reveal>
         <h3 className="mt-10 font-display text-lg font-semibold">
           Typical features
         </h3>
@@ -161,26 +166,29 @@ function WebsitesSection() {
           </ButtonLink>
         </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-ink/10 bg-white p-5">
-            <p className="text-xs font-bold uppercase tracking-widest text-orange">
-              Option A
-            </p>
-            <p className="muted mt-2 text-sm">{optionA}</p>
-          </div>
-          <div className="rounded-2xl border border-ink/10 bg-white p-5">
-            <p className="text-xs font-bold uppercase tracking-widest text-orange">
-              Option B
-            </p>
-            <p className="muted mt-2 text-sm">{optionB}</p>
-          </div>
-        </div>
-
-        <div className="mt-6 grid gap-4 lg:grid-cols-3">
-          {websitePackages.map((pkg) => (
-            <PackageCard key={pkg.id} pkg={pkg} showFeatures />
+        <Stagger className="mt-12 grid gap-4 md:grid-cols-2">
+          {[
+            { label: "Option A", text: optionA },
+            { label: "Option B", text: optionB },
+          ].map((option) => (
+            <StaggerItem key={option.label} className="h-full">
+              <div className="card-lift h-full rounded-2xl border border-ink/10 bg-white p-5 hover:border-orange/40">
+                <p className="text-xs font-bold uppercase tracking-widest text-orange">
+                  {option.label}
+                </p>
+                <p className="muted mt-2 text-sm">{option.text}</p>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
+
+        <Stagger className="mt-6 grid gap-4 lg:grid-cols-3">
+          {websitePackages.map((pkg) => (
+            <StaggerItem key={pkg.id} className="h-full">
+              <PackageCard pkg={pkg} showFeatures />
+            </StaggerItem>
+          ))}
+        </Stagger>
       </div>
     </section>
   );
