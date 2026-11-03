@@ -54,7 +54,9 @@ export function SmartLink({
       search={search as never}
       {...(hash ? { hash } : {})}
       className={className}
-      activeProps={activeClassName ? { className: activeClassName } : undefined}
+      {...(activeClassName
+        ? { activeProps: { className: activeClassName } }
+        : {})}
       activeOptions={{ exact: pathname === "/" }}
       onClick={onClick}
       aria-label={ariaLabel}
