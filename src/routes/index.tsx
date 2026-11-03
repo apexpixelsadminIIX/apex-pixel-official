@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { BrowserFrame } from "@/components/site/BrowserFrame";
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { ContactTrio } from "@/components/site/ContactTrio";
 import { PricingGrid } from "@/components/site/PricingGrid";
@@ -184,26 +185,6 @@ function WhatApexBuilds() {
 }
 
 /* 4. RECENT WORK (dark) */
-
-function BrowserFrame({ label }: { label: string }) {
-  return (
-    <div className="overflow-hidden rounded-xl border border-white/10">
-      <div className="flex items-center gap-1.5 bg-ink-2 px-3 py-2.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-white/20" aria-hidden />
-        <span className="h-2.5 w-2.5 rounded-full bg-white/20" aria-hidden />
-        <span className="h-2.5 w-2.5 rounded-full bg-white/20" aria-hidden />
-        <span className="ml-2 grid h-5 flex-1 place-items-center overflow-hidden rounded-full bg-white/5 px-3 text-left text-[10px] text-white/30">
-          {label}
-        </span>
-      </div>
-      <div className="grid aspect-video place-items-center bg-gradient-to-br from-navy/50 via-ink-2 to-ink">
-        <span className="font-display text-sm font-semibold text-on-dark-muted">
-          {label}
-        </span>
-      </div>
-    </div>
-  );
-}
 
 function RecentWork() {
   return (

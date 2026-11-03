@@ -43,23 +43,21 @@ export function BrowserFrame({
 
 function ScreenshotSlot({ src, label }: { src: string; label: string }) {
   return (
-    <div className="grid aspect-video place-items-center bg-gradient-to-br from-navy/50 via-ink-2 to-ink">
+    <div className="relative grid aspect-video place-items-center bg-gradient-to-br from-navy/50 via-ink-2 to-ink">
       <img
         src={src}
-        alt={label}
+        alt="Website screenshot"
         loading="lazy"
         className="h-full w-full object-cover"
         onError={(e) => {
           const img = e.currentTarget;
           img.style.display = "none";
-          if (img.nextElementSibling instanceof HTMLElement) {
-            img.nextElementSibling.style.display = "grid";
-          }
+          const next = img.nextElementSibling;
+          if (next instanceof HTMLElement) next.style.display = "grid";
         }}
       />
       <span
         className="hidden place-items-center font-display text-sm font-semibold text-on-dark-muted"
-        style={{ position: "absolute" }}
       >
         {label}
       </span>
