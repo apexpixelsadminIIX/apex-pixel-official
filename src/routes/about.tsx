@@ -73,7 +73,7 @@ function AboutPage() {
                 className="absolute -top-8 -left-4 rotate-[16deg] opacity-80"
               />
               <img
-                src="/logo-mark.png"
+                src="/logo-mark.webp"
                 alt=""
                 aria-hidden
                 width={1472}

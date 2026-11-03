@@ -25,7 +25,7 @@ function NotFoundComponent() {
   return (
     <main className="tone-dark grid-bg-dark flex min-h-[80vh] flex-col items-center justify-center px-4 text-center">
       <img
-        src="/logo-mark.png"
+        src="/logo-mark.webp"
         alt=""
         aria-hidden
         className="h-24 w-auto opacity-90"

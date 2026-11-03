@@ -13,7 +13,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
           <div>
             <div className="inline-flex items-center rounded-2xl bg-white px-4 py-2.5">
-              <img src="/logo-full.png" alt={site.name} className="h-9 w-auto" />
+              <img src="/logo-full.webp" alt={site.name} className="h-9 w-auto" />
             </div>
             <p className="muted mt-4 text-sm">{site.tagline}</p>
             <Stripes count={6} className="mt-5" itemClassName="h-2 w-6" />

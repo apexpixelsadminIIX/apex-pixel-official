@@ -206,7 +206,7 @@ function Hero() {
                   className="absolute bottom-2 -right-4 -rotate-[14deg] opacity-80"
                 />
                 <img
-                  src="/logo-mark.png"
+                  src="/logo-mark.webp"
                   alt="The Apex Pixels mark: a lion inside a downward triangle"
                   width={1472}
                   height={698}
@@ -449,7 +449,7 @@ function WhyLion() {
           </Reveal>
           <Reveal>
             <img
-              src="/logo-mark.png"
+              src="/logo-mark.webp"
               alt=""
               aria-hidden
               width={1472}
