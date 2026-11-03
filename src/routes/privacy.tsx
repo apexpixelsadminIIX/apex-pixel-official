@@ -74,6 +74,7 @@ function PrivacyPage() {
             </p>
           </div>
         </div>
+        </Reveal>
       </article>
     </main>
   );

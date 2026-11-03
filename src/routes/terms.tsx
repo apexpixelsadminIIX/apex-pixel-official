@@ -73,6 +73,7 @@ function TermsPage() {
             </p>
           </div>
         </div>
+        </Reveal>
       </article>
     </main>
   );
