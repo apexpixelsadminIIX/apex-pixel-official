@@ -3,7 +3,7 @@
 Prompt 1 of 5 is complete (foundation, design system, shared components, Home page, placeholder routes).
 
 - [x] Prompt 1 — Foundation: design system, site.ts config, navbar, WhatsApp button, ContactTrio, footer, scroll progress, 404, Home page, placeholder routes
-- [ ] Prompt 2 — Inner pages: Services, Work, case studies, About, Contact, Privacy, Terms (replace PlaceholderPage routes)
+- [x] Prompt 2 — Inner pages: Services, Work, case studies, About, Contact (form UI + validation), Privacy, Terms
 - [ ] Prompt 3 — Motion and animation (framer-motion: hero, stripes, marquee, scroll reveals)
 - [ ] Prompt 4 — Contact form and booking link (bookingUrl in site.ts is empty until this prompt)
 - [ ] Prompt 5 — SEO, metadata polish, static build/deploy pass
