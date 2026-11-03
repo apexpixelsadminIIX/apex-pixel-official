@@ -52,7 +52,7 @@ export function SmartLink({
     <Link
       to={to}
       search={search as never}
-      hash={hash || undefined}
+      {...(hash ? { hash } : {})}
       className={className}
       activeProps={activeClassName ? { className: activeClassName } : undefined}
       activeOptions={{ exact: pathname === "/" }}
