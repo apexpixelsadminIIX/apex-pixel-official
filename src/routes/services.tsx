@@ -3,10 +3,12 @@ import { Check } from "lucide-react";
 
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { ContactTrio } from "@/components/site/ContactTrio";
-import { PackageCard } from "@/components/site/PricingGrid";
+import { PackageCard, PricingGrid } from "@/components/site/PricingGrid";
 import { Stripes } from "@/components/site/Stripes";
 import {
+  carePlans,
   discoveryNote,
+  extras,
   packages,
   serviceSections,
 } from "@/config/site";
@@ -273,22 +275,18 @@ function AfterLaunch() {
           care plan keeps the site or app healthy.
         </p>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {(
-            [
-              ["site-care", "₹1,000 per month"],
-              ["store-care", "₹3,000 per month"],
-              ["app-care", "15% of the build price per year"],
-            ] as const
-          ).map(([id]) => {
-            const plan = {
-              id: id,
-              name: "",
-              price: "",
-              forWhom: "",
-              text: "",
-            };
-            return plan;
-          })}
+          {carePlans.map((plan) => (
+            <article key={plan.id} className="card-dark flex flex-col p-6">
+              <h3 className="font-display text-xl font-semibold">{plan.name}</h3>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-on-dark-muted">
+                {plan.forWhom}
+              </p>
+              <p className="mt-3 font-display text-lg font-bold text-orange">
+                {plan.price}
+              </p>
+              <p className="muted mt-3 text-sm">{plan.text}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
