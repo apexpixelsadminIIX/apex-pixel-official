@@ -23,13 +23,11 @@ import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 
 function NotFoundComponent() {
   return (
-    <main className="tone-dark grid-bg-dark flex min-h-[80vh] flex-col items-center justify-center px-4 text-center">
-      <img
-        src="/logo-mark.webp"
-        alt=""
-        aria-hidden
-        className="h-24 w-auto opacity-90"
-      />
+    <main
+      id="main"
+      className="tone-dark grid-bg-dark flex min-h-[80vh] flex-col items-center justify-center px-4 text-center"
+    >
+      <img src="/logo-mark.webp" alt="" aria-hidden className="h-24 w-auto opacity-90" />
       <h1 className="mt-8 font-display text-4xl font-bold tracking-tight md:text-5xl">
         This page took a wrong turn.
       </h1>
@@ -60,7 +58,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
           This page didn't load
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Something went wrong while loading this page. You can try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -97,8 +95,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: site.name },
       { property: "og:site_name", content: site.name },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
@@ -137,6 +133,12 @@ function RootComponent() {
       {/* Respect prefers-reduced-motion for every Framer Motion animation:
           movements become simple opacity fades. */}
       <MotionConfig reducedMotion="user">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-orange focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-ink"
+        >
+          Skip to content
+        </a>
         <ScrollProgress />
         <Navbar />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}

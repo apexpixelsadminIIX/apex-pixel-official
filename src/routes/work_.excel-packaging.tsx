@@ -1,12 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  ClipboardList,
-  Grid2x2,
-  Images,
-  Lock,
-  Smartphone,
-  Sparkles,
-} from "lucide-react";
+import { seo } from "@/lib/seo";
+import { ClipboardList, Grid2x2, Images, Lock, Smartphone, Sparkles } from "lucide-react";
 
 import { BrowserFrame } from "@/components/site/BrowserFrame";
 import { ButtonLink } from "@/components/site/ButtonLink";
@@ -17,28 +11,14 @@ import { caseStudy } from "@/config/site";
 
 export const Route = createFileRoute("/work_/excel-packaging")({
   component: ExcelPackagingCaseStudy,
-  head: () => ({
-    meta: [
-      { title: "Excel Packaging and Taste Foods — Case study — Apex Pixels" },
-      {
-        name: "description",
-        content:
-          "How Apex Pixels built a product catalogue and enquiry website for Excel Packaging and Taste Foods, a Chennai packaging supplier.",
-      },
-      {
-        property: "og:title",
-        content: "Excel Packaging and Taste Foods — Case study — Apex Pixels",
-      },
-      {
-        property: "og:description",
-        content:
-          "A product catalogue, enquiry system and admin panel for a Chennai packaging supplier.",
-      },
-      { property: "og:type", content: "article" },
-      { property: "og:url", content: "/work/excel-packaging" },
-    ],
-    links: [{ rel: "canonical", href: "/work/excel-packaging" }],
-  }),
+  head: () =>
+    seo({
+      path: "/work/excel-packaging",
+      title: "Excel Packaging and Taste Foods case study | Apex Pixels",
+      description:
+        "How Apex Pixels built a product catalogue, enquiry list and admin panel for Excel Packaging and Taste Foods, a Chennai packaging supplier.",
+      type: "article",
+    }),
 });
 
 const builtIcons: Record<string, typeof Grid2x2> = {
@@ -51,14 +31,12 @@ const builtIcons: Record<string, typeof Grid2x2> = {
 };
 
 function SectionHeading({ children }: { children: string }) {
-  return (
-    <h2 className="font-display text-2xl font-bold tracking-tight">{children}</h2>
-  );
+  return <h2 className="font-display text-2xl font-bold tracking-tight">{children}</h2>;
 }
 
 function ExcelPackagingCaseStudy() {
   return (
-    <main>
+    <main id="main">
       <header className="tone-light section-pad pb-14 pt-36 md:pb-16 md:pt-44">
         <div className="container-apx">
           <Reveal>
@@ -132,10 +110,7 @@ function ExcelPackagingCaseStudy() {
           <Stagger className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {caseStudy.screenshots.map((src, i) => (
               <StaggerItem key={src}>
-                <BrowserFrame
-                  label={`${caseStudy.title} — ${i + 1}`}
-                  src={src}
-                />
+                <BrowserFrame label={`${caseStudy.title} — ${i + 1}`} src={src} />
               </StaggerItem>
             ))}
           </Stagger>
@@ -145,22 +120,17 @@ function ExcelPackagingCaseStudy() {
           <Reveal>
             <SectionHeading>Next project</SectionHeading>
             <article className="card-dark card-lift mt-6 flex max-w-2xl flex-col p-6">
-              <span className="self-start rounded-full border border-green/40 bg-green/10 px-3 py-1 text-xs font-semibold text-green">
+              <span className="self-start rounded-full border border-green/40 bg-green/10 px-3 py-1 text-xs font-semibold text-green-ax">
                 {caseStudy.nextProject.badge}
               </span>
               <h3 className="mt-4 font-display text-xl font-semibold">
                 {caseStudy.nextProject.name}
               </h3>
               <p className="muted mt-2 text-sm">
-                A website for a Chennai hospitality training and consulting
-                company.
+                A website for a Chennai hospitality training and consulting company.
               </p>
               <div className="mt-5">
-                <ButtonLink
-                  href={caseStudy.nextProject.url}
-                  variant="outline-dark"
-                  size="sm"
-                >
+                <ButtonLink href={caseStudy.nextProject.url} variant="outline-dark" size="sm">
                   Visit the site
                 </ButtonLink>
               </div>

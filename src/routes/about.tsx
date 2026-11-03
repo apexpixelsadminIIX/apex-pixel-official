@@ -1,12 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { seo } from "@/lib/seo";
 import { OptionalImage } from "@/components/site/OptionalImage";
-import {
-  ClipboardCheck,
-  FileSignature,
-  IndianRupee,
-  MessageCircle,
-  Repeat2,
-} from "lucide-react";
+import { ClipboardCheck, FileSignature, IndianRupee, MessageCircle, Repeat2 } from "lucide-react";
 
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { ContactTrio } from "@/components/site/ContactTrio";
@@ -16,25 +11,13 @@ import { founder, lionStory, mapsUrl, principles, site } from "@/config/site";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
-  head: () => ({
-    meta: [
-      { title: "About — Apex Pixels" },
-      {
-        name: "description",
-        content:
-          "About Apex Pixels, a Chennai-based business that builds websites, web apps and business software, founded by Manish. S.",
-      },
-      { property: "og:title", content: "About — Apex Pixels" },
-      {
-        property: "og:description",
-        content:
-          "A Chennai-based business that builds websites, web apps and business software, founded by Manish. S.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/about" },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
-  }),
+  head: () =>
+    seo({
+      path: "/about",
+      title: "About Apex Pixels",
+      description:
+        "Apex Pixels is a Chennai business that builds websites, web apps and business software, founded by Manish. S. Read why the mark is a lion in a triangle.",
+    }),
 });
 
 const principleIcons: Record<string, typeof FileSignature> = {
@@ -47,7 +30,7 @@ const principleIcons: Record<string, typeof FileSignature> = {
 
 function AboutPage() {
   return (
-    <main>
+    <main id="main">
       {/* 1. Header (light) */}
       <header className="tone-light section-pad pb-14 pt-36 md:pb-16 md:pt-44">
         <div className="container-apx">
@@ -55,8 +38,8 @@ function AboutPage() {
             <Stripes count={6} itemClassName="h-2.5 w-9" />
             <h1 className="mt-6">About Apex Pixels</h1>
             <p className="muted mt-4 max-w-2xl">
-              Apex Pixels is a Chennai-based business that builds websites, web
-              apps and business software, founded by {site.founder}.
+              Apex Pixels is a Chennai-based business that builds websites, web apps and business
+              software, founded by {site.founder}.
             </p>
           </Reveal>
         </div>
@@ -102,9 +85,7 @@ function AboutPage() {
       {/* 3. How work is done (light) */}
       <section className="tone-light section-pad">
         <div className="container-apx">
-          <h2 className="font-display text-3xl font-bold tracking-tight">
-            How work is done
-          </h2>
+          <h2 className="font-display text-3xl font-bold tracking-tight">How work is done</h2>
           <Stagger className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {principles.map((principle) => {
               const Icon = principleIcons[principle.icon];
@@ -114,9 +95,7 @@ function AboutPage() {
                     <span className="grid h-11 w-11 place-items-center rounded-full bg-orange/10 text-orange">
                       {Icon && <Icon className="h-5 w-5" aria-hidden />}
                     </span>
-                    <h3 className="mt-4 font-display text-lg font-semibold">
-                      {principle.title}
-                    </h3>
+                    <h3 className="mt-4 font-display text-lg font-semibold">{principle.title}</h3>
                     <p className="muted mt-2 text-sm">{principle.text}</p>
                   </article>
                 </StaggerItem>
@@ -137,9 +116,7 @@ function AboutPage() {
                 className="h-28 w-28 shrink-0 rounded-full object-cover"
               />
               <div>
-                <h2 className="font-display text-2xl font-bold tracking-tight">
-                  {founder.name}
-                </h2>
+                <h2 className="font-display text-2xl font-bold tracking-tight">{founder.name}</h2>
                 <p className="text-sm font-semibold uppercase tracking-widest text-orange">
                   {founder.title}
                 </p>

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { seo } from "@/lib/seo";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { useEffect, useRef, useState } from "react";
@@ -39,25 +40,13 @@ export const Route = createFileRoute("/contact")({
     intent: typeof search["intent"] === "string" ? search["intent"] : undefined,
   }),
   component: ContactPage,
-  head: () => ({
-    meta: [
-      { title: "Contact — Apex Pixels" },
-      {
-        name: "description",
-        content:
-          "Start a conversation with Apex Pixels: message on WhatsApp, book a 15-minute call, or send an enquiry.",
-      },
-      { property: "og:title", content: "Contact — Apex Pixels" },
-      {
-        property: "og:description",
-        content:
-          "Message on WhatsApp, book a 15-minute call, or send an enquiry. Pick whichever way is easiest.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/contact" },
-    ],
-    links: [{ rel: "canonical", href: "/contact" }],
-  }),
+  head: () =>
+    seo({
+      path: "/contact",
+      title: "Contact Apex Pixels",
+      description:
+        "Message Apex Pixels on WhatsApp, book a 15-minute call or send an enquiry about a website, web app or business software project in Chennai or across India.",
+    }),
 });
 
 const packageIds = packages.map((p) => p.id);
@@ -227,7 +216,7 @@ function ContactPage() {
   const submitDisabled = submitting || cooldown > 0;
 
   return (
-    <main>
+    <main id="main">
       <header className="tone-light section-pad pb-14 pt-36 md:pb-16 md:pt-44">
         <div className="container-apx">
           <Reveal>
@@ -285,21 +274,44 @@ function ContactPage() {
                     label="Full name"
                     required
                     error={errors.fullName?.message}
+                    errorId="fullName-error"
                     className="sm:col-span-1"
                   >
-                    <Input {...register("fullName")} aria-required="true" />
+                    <Input
+                      {...register("fullName")}
+                      aria-required="true"
+                      aria-invalid={errors.fullName ? true : undefined}
+                      aria-describedby={errors.fullName ? "fullName-error" : undefined}
+                    />
                   </Field>
 
                   <Field label="Business name" className="sm:col-span-1">
                     <Input {...register("businessName")} />
                   </Field>
 
-                  <Field label="Phone or WhatsApp number" required error={errors.phone?.message}>
-                    <Input {...register("phone")} type="tel" aria-required="true" />
+                  <Field
+                    label="Phone or WhatsApp number"
+                    required
+                    error={errors.phone?.message}
+                    errorId="phone-error"
+                  >
+                    <Input
+                      {...register("phone")}
+                      type="tel"
+                      inputMode="tel"
+                      aria-required="true"
+                      aria-invalid={errors.phone ? true : undefined}
+                      aria-describedby={errors.phone ? "phone-error" : undefined}
+                    />
                   </Field>
 
-                  <Field label="Email" error={errors.email?.message}>
-                    <Input {...register("email")} type="email" />
+                  <Field label="Email" error={errors.email?.message} errorId="email-error">
+                    <Input
+                      {...register("email")}
+                      type="email"
+                      aria-invalid={errors.email ? true : undefined}
+                      aria-describedby={errors.email ? "email-error" : undefined}
+                    />
                   </Field>
 
                   <Field label="What do you need?" className="sm:col-span-1">
@@ -375,8 +387,18 @@ function ContactPage() {
                     />
                   </Field>
 
-                  <Field label="Message" className="sm:col-span-2">
-                    <Textarea {...register("message")} rows={5} />
+                  <Field
+                    label="Message"
+                    error={errors.message?.message}
+                    errorId="message-error"
+                    className="sm:col-span-2"
+                  >
+                    <Textarea
+                      {...register("message")}
+                      rows={5}
+                      aria-invalid={errors.message ? true : undefined}
+                      aria-describedby={errors.message ? "message-error" : undefined}
+                    />
                   </Field>
 
                   <div className="sm:col-span-2">
@@ -518,12 +540,14 @@ function Field({
   label,
   required,
   error,
+  errorId,
   className,
   children,
 }: {
   label: string;
   required?: boolean | undefined;
   error?: string | undefined;
+  errorId?: string | undefined;
   className?: string | undefined;
   children: React.ReactNode;
 }) {
@@ -534,7 +558,11 @@ function Field({
         {required && <span className="text-orange"> *</span>}
       </span>
       <div className="mt-1.5">{children}</div>
-      {error && <span className="mt-1 block text-xs text-destructive">{error}</span>}
+      {error && (
+        <span id={errorId} className="mt-1 block text-xs text-destructive">
+          {error}
+        </span>
+      )}
     </label>
   );
 }

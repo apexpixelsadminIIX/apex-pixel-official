@@ -253,7 +253,7 @@ export const faqs: Faq[] = [
       "The client owns it once the final payment is made. Domain and hosting accounts are registered in the client's name.",
   },
   {
-    question: "Can we meet in person?",
+    question: "Can meetings be held in person?",
     answer:
       "Meetings are online by default. In-person sessions in Chennai can be arranged and are quoted separately.",
   },

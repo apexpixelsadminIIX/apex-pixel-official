@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { seo, absoluteUrl } from "@/lib/seo";
 import { motion, useMotionValue, useScroll, useSpring } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
@@ -31,31 +32,45 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export const Route = createFileRoute("/")({
   component: Index,
-  head: () => ({
-    meta: [
-      { title: `${site.name} — ${site.tagline}` },
-      {
-        name: "description",
-        content:
-          "Apex Pixels designs and builds websites, web apps and business software, and sets up the tools that show how they are doing. Based in Chennai, building for businesses anywhere in India.",
-      },
-      { property: "og:title", content: `${site.name} — ${site.tagline}` },
-      {
-        property: "og:description",
-        content:
-          "Websites, web apps and business software, built from Chennai for businesses anywhere in India. Clear starting prices and three ways to start a conversation.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
+  head: () => {
+    const base = seo({
+      path: "/",
+      title: "Apex Pixels | Websites, web apps and business software in Chennai",
+      description:
+        "Apex Pixels builds websites, web apps and business software for businesses in Chennai and across India. Clear starting prices and a written scope.",
+    });
+    return {
+      ...base,
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            name: site.name,
+            url: absoluteUrl("/"),
+            logo: absoluteUrl("/logo-full.webp"),
+            email: site.email,
+            telephone: "+917988065129",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Plot - 1A, 3F, Sadayandi Nayakar Street, RG Nagar, Medavakkam",
+              addressLocality: "Chennai",
+              postalCode: "600100",
+              addressRegion: "Tamil Nadu",
+              addressCountry: "IN",
+            },
+            areaServed: "India",
+          }),
+        },
+      ],
+    };
+  },
 });
 
 function Index() {
   return (
-    <main>
+    <main id="main">
       <Hero />
       <MarqueeStrip />
       <WhatApexBuilds />
@@ -254,7 +269,7 @@ function WhatApexBuilds() {
               <StaggerItem key={topic.id} className="h-full">
                 <article className="card-light card-lift flex h-full flex-col p-6 hover:border-orange/40">
                   {small && (
-                    <span className="mb-3 self-start rounded-full border border-green/30 bg-green/10 px-3 py-1 text-xs font-semibold text-green">
+                    <span className="mb-3 self-start rounded-full border border-green/30 bg-green/10 px-3 py-1 text-xs font-semibold text-green-ax">
                       {topic.tag}
                     </span>
                   )}
@@ -301,7 +316,7 @@ function RecentWork() {
                     </ButtonLink>
                   ) : (
                     <>
-                      <span className="rounded-full border border-green/40 bg-green/10 px-3 py-1 text-xs font-semibold text-green">
+                      <span className="rounded-full border border-green/40 bg-green/10 px-3 py-1 text-xs font-semibold text-green-ax">
                         Case study coming soon
                       </span>
                       <ButtonLink href={item.href} variant="outline-dark" size="sm">

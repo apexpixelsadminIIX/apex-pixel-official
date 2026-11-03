@@ -134,21 +134,15 @@
 
 /* Faint grid of tiny squares for dark hero backgrounds */
 @utility grid-bg-dark {
-  background-image: linear-gradient(
-      rgb(255 255 255 / 3.5%) 1px,
-      transparent 1px
-    ),
+  background-image:
+    linear-gradient(rgb(255 255 255 / 3.5%) 1px, transparent 1px),
     linear-gradient(90deg, rgb(255 255 255 / 3.5%) 1px, transparent 1px);
   background-size: 44px 44px;
 }
 
 /* Alternating navy/orange stripe fill, used by the scroll progress bar */
 @utility stripes-navy-orange {
-  background-image: repeating-linear-gradient(
-    90deg,
-    var(--navy) 0 28px,
-    var(--orange) 28px 56px
-  );
+  background-image: repeating-linear-gradient(90deg, var(--navy) 0 28px, var(--orange) 28px 56px);
 }
 
 /* ---- Motion ---- */
@@ -316,4 +310,18 @@
       scroll-behavior: auto;
     }
   }
+}
+
+/* Accessible green for small text: brand green fails 4.5:1 on both tones. */
+.tone-dark .text-green-ax {
+  color: #4cd964;
+}
+.tone-light .text-green-ax {
+  color: #0b6b05;
+}
+
+/* Visible orange focus ring on every interactive element. */
+:where(a, button, input, select, textarea, summary, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid #fc641c;
+  outline-offset: 2px;
 }
