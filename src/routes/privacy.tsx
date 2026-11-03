@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { site } from "@/config/site";
+import { lastUpdated, site } from "@/config/site";
 
 export const Route = createFileRoute("/privacy")({
   component: PrivacyPage,
