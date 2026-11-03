@@ -157,7 +157,7 @@ function ContactPage() {
                   control={control}
                   name="need"
                   render={({ field }) => (
-                    <Select value={field.value || undefined} onValueChange={field.onChange}>
+                    <Select {...(field.value ? { value: field.value } : {})} onValueChange={field.onChange}>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select an option" />
                       </SelectTrigger>
@@ -178,7 +178,7 @@ function ContactPage() {
                   control={control}
                   name="pkg"
                   render={({ field }) => (
-                    <Select value={field.value || undefined} onValueChange={field.onChange}>
+                    <Select {...(field.value ? { value: field.value } : {})} onValueChange={field.onChange}>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select a package" />
                       </SelectTrigger>
@@ -200,7 +200,7 @@ function ContactPage() {
                   control={control}
                   name="timeline"
                   render={({ field }) => (
-                    <Select value={field.value || undefined} onValueChange={field.onChange}>
+                    <Select {...(field.value ? { value: field.value } : {})} onValueChange={field.onChange}>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select a timeline" />
                       </SelectTrigger>
