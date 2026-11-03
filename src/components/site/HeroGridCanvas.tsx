@@ -100,7 +100,9 @@ export function HeroGridCanvas() {
             const key = `${cx}:${cy}`;
             const existing = lit.get(key);
             if (existing) {
-              existing.start = now - (t % FADE_MS);
+              // Keep the square lit while the pointer stays on it; it then
+              // fades out over FADE_MS after the pointer moves away.
+              existing.start = now;
             } else {
               lit.set(key, {
                 cx,
