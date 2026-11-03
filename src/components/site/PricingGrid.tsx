@@ -1,7 +1,7 @@
 import { packageGroups, packages, priceNote, type Package } from "@/config/site";
 import { ButtonLink } from "./ButtonLink";
 
-function PackageCard({
+export function PackageCard({
   pkg,
   showFeatures,
 }: {

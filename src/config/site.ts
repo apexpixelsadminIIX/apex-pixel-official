@@ -309,3 +309,192 @@ export const steps = [
     text: "The site goes live with a handover guide and a recorded walkthrough, followed by a period of free bug fixes that depends on the package.",
   },
 ];
+
+/* ---- Prompt 2: inner pages ---- */
+
+export type ServiceSection = {
+  id: string;
+  anchor: string;
+  title: string;
+  description: string;
+  goodFor?: string;
+  items: string[];
+  note?: string;
+  size: "full" | "small";
+};
+
+export const serviceSections: ServiceSection[] = [
+  {
+    id: "websites",
+    anchor: "websites",
+    title: "Websites",
+    description:
+      "Websites that show a business clearly and make it easy to get in touch. Built to load fast, look right on every screen and be simple to update.",
+    goodFor:
+      "Shops, clinics, manufacturers, service providers and institutions that need a professional presence online.",
+    items: [
+      "Responsive design for phone, tablet and desktop",
+      "Enquiry form and WhatsApp button",
+      "Service or product pages",
+      "Image galleries",
+      "Google Maps",
+      "Basic search engine setup",
+      "Analytics setup, so you can see how the site is doing",
+      "Online store with a cart and one payment gateway, in the Professional package (Option B)",
+    ],
+    size: "full",
+  },
+  {
+    id: "software",
+    anchor: "software",
+    title: "Web apps and business software",
+    description:
+      "Custom web applications and business software built around how a business actually works, replacing spreadsheets, paper and scattered messages with one system.",
+    goodFor:
+      "Businesses that manage orders, customers, stock, bookings or several branches and want one place to do it.",
+    items: [
+      "User logins and roles",
+      "Dashboards and reports",
+      "Data import and export",
+      "Admin panel",
+      "Multi-branch management",
+      "Notifications",
+    ],
+    size: "full",
+  },
+  {
+    id: "content",
+    anchor: "content",
+    title: "Social media and content",
+    description:
+      "A smaller service for businesses that want their online presence to look consistent.",
+    items: [
+      "Social media content creation",
+      "Product and service photography",
+      "Corporate video content for internal company use",
+    ],
+    note: "Quoted per project.",
+    size: "small",
+  },
+];
+
+/** Plain-words explanation of the paid discovery step for Web App and Business Suite. */
+export const discoveryNote = {
+  amounts: "₹15,000 for Web App and ₹25,000 for Business Suite",
+  text: "Both start with a paid discovery step, credited in full to the project. Discovery produces a written scope, screen designs and a fixed quote.",
+  payment: "Payment is by milestone, with the last part due at go-live.",
+};
+
+export const excelLiveUrl = "http://excelpackagingandtastefoods.com/";
+
+export const caseStudy = {
+  slug: "excel-packaging",
+  title: "Excel Packaging and Taste Foods",
+  tags: ["Product catalogue", "Enquiry system", "Admin panel"],
+  liveUrl: excelLiveUrl,
+  client:
+    "Excel Packaging and Taste Foods is a Chennai-based business-to-business supplier, operating since 2019. It supplies food-safe packaging, eco-friendly disposables, wraps and aluminium foils, and cleaning and sanitisation chemicals to restaurants, cloud kitchens and hotels.",
+  brief:
+    "The client needed a professional online catalogue that buyers can browse and enquire from, and a simple way for its own team to keep the catalogue up to date.",
+  built: [
+    {
+      icon: "grid",
+      text: "A product catalogue organised into nine categories, including an eco-friendly range, plastic containers, disposable cutlery, beverage packaging, napkins, hospitality amenities, custom branding and a cleaning chemicals range.",
+    },
+    {
+      icon: "images",
+      text: "Category filters, and a product image gallery with a full-screen viewer.",
+    },
+    {
+      icon: "clipboard",
+      text: "An enquiry list: buyers add products and send a single enquiry. The form collects company name, products, quantity and contact details, and records each enquiry in a Google Sheet.",
+    },
+    {
+      icon: "lock",
+      text: "A password-protected admin area where the client's team adds and edits products and categories without a developer.",
+    },
+    {
+      icon: "sparkles",
+      text: "The cleaning and hygiene range set up as its own section, so it can grow into a separate brand later.",
+    },
+    {
+      icon: "smartphone",
+      text: "A mobile-first layout.",
+    },
+  ],
+  look:
+    "A fresh green palette taken from the client's own brand, with sunflower yellow and orange as accents. Plain, factual language throughout, in line with the client's guidelines.",
+  screenshots: [1, 2, 3, 4].map((n) => `/work/excel-packaging-${n}.jpg`),
+  nextProject: {
+    name: "Hospitality Critic Solutions",
+    url: "https://hospitalitycriticsolutions.com/",
+    badge: "Case study coming soon",
+  },
+};
+
+export const lionStory = [
+  "Every business starts as small pieces: a product, a promise, a handful of good people. Apart, they are easy to overlook.",
+  "The stripes in this mark are those pieces. Navy stands for the thinking behind the work: structure, code and care. Orange is the spark that gives it life. Follow the stripes inward and they gather into a face. A lion, calm and watchful.",
+  "That is the idea behind Apex Pixels. A pixel is almost nothing on its own. Thousands of them, placed with attention, become something people recognise and trust.",
+  "The triangle points to a single point, because good work comes down to focus: one clear idea, held steadily. The lion is not there to roar. It stands for a simple belief: strength is quiet, and presence is built one careful detail at a time.",
+];
+
+export const principles = [
+  {
+    icon: "scope",
+    title: "Written scope",
+    text: "Every project starts with a signed scope, price and timeline.",
+  },
+  {
+    icon: "approval",
+    title: "Approval at every stage",
+    text: "Design, build and final site are approved in writing.",
+  },
+  {
+    icon: "revisions",
+    title: "A clear revision limit",
+    text: "Two or three rounds of revisions are included, depending on the package, and extra changes are quoted before they begin.",
+  },
+  {
+    icon: "communication",
+    title: "Plain communication",
+    text: "Updates in simple language, by WhatsApp or email.",
+  },
+  {
+    icon: "pricing",
+    title: "Honest pricing",
+    text: "Starting prices are shown openly, with the costs paid by the client listed clearly.",
+  },
+];
+
+export const founder = {
+  name: site.founder,
+  title: "Founder, Apex Pixels",
+  photo: "/manish.jpg", // Optional; hidden until the file is uploaded.
+  text:
+    "I started Apex Pixels to build websites and software that businesses can be proud of and actually use. I work directly with every client, from the first call to the day the project goes live.",
+};
+
+export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  site.address,
+)}`;
+
+export const needOptions = [
+  "Website",
+  "Online store",
+  "Web app or business software",
+  "Social media and content",
+  "Not sure yet",
+];
+
+export const timelineOptions = [
+  "As soon as possible",
+  "Within a month",
+  "In two to three months",
+  "Just exploring",
+];
+
+export const lastUpdated = new Intl.DateTimeFormat("en-GB", {
+  month: "long",
+  year: "numeric",
+}).format(new Date());
