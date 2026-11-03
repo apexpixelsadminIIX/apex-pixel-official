@@ -81,16 +81,18 @@ function Index() {
 function HeadlineLine({
   children,
   delay,
+  className,
   glow = false,
 }: {
   children: ReactNode;
   delay: number;
+  className?: string;
   glow?: boolean;
 }) {
   return (
     <span className="block overflow-hidden pb-1">
       <motion.span
-        className="block"
+        className={`block ${className ?? ""}`}
         initial={{
           y: "110%",
           ...(glow ? { textShadow: "0 0 22px rgba(252, 100, 28, 0.55)" } : {}),
@@ -146,7 +148,7 @@ function Hero() {
             <h1 className="mt-6">
               <HeadlineLine delay={0.4}>Websites built.</HeadlineLine>
               <HeadlineLine delay={0.52}>Brands seen.</HeadlineLine>
-              <HeadlineLine delay={0.64} glow>
+              <HeadlineLine delay={0.64} className="text-orange" glow>
                 Growth measured.
               </HeadlineLine>
             </h1>
