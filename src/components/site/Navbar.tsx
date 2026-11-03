@@ -19,7 +19,8 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 24));
+  // Shrinks slightly after 40px of scroll with a smooth transition.
+  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 40));
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
