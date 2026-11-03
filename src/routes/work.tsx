@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BrowserFrame } from "@/components/site/BrowserFrame";
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { ContactTrio } from "@/components/site/ContactTrio";
+import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import { Stripes } from "@/components/site/Stripes";
 import { workItems } from "@/config/site";
 
