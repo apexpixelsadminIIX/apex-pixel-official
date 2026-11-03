@@ -67,7 +67,7 @@ function Hero() {
   return (
     <section className="tone-dark grid-bg-dark relative flex min-h-svh items-center overflow-hidden">
       <div className="container-apx section-pad w-full pt-36 md:pt-44">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.25fr_0.75fr]">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.35fr_0.65fr]">
           <div className="order-2 lg:order-1">
             <Stripes count={6} itemClassName="h-2.5 w-9" />
             <h1 className="mt-6">
@@ -100,7 +100,7 @@ function Hero() {
           </div>
 
           <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
-            <div className="relative w-full max-w-sm">
+            <div className="relative w-full max-w-xs">
               <Stripes
                 count={7}
                 itemClassName="h-3 w-12"
