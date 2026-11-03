@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { OptionalImage } from "./OptionalImage";
 
 /**
  * Browser-frame image slot. Without `src` it renders a gradient placeholder
@@ -44,23 +45,16 @@ export function BrowserFrame({
 function ScreenshotSlot({ src, label }: { src: string; label: string }) {
   return (
     <div className="relative grid aspect-video place-items-center bg-gradient-to-br from-navy/50 via-ink-2 to-ink">
-      <img
+      <OptionalImage
         src={src}
         alt="Website screenshot"
-        loading="lazy"
         className="h-full w-full object-cover"
-        onError={(e) => {
-          const img = e.currentTarget;
-          img.style.display = "none";
-          const next = img.nextElementSibling;
-          if (next instanceof HTMLElement) next.style.display = "grid";
-        }}
+        fallback={
+          <span className="font-display text-sm font-semibold text-on-dark-muted">
+            {label}
+          </span>
+        }
       />
-      <span
-        className="hidden place-items-center font-display text-sm font-semibold text-on-dark-muted"
-      >
-        {label}
-      </span>
     </div>
   );
 }

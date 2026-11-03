@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { OptionalImage } from "@/components/site/OptionalImage";
 import {
   ClipboardCheck,
   FileSignature,
@@ -121,13 +122,10 @@ function AboutPage() {
       <section className="tone-light pb-20">
         <div className="container-apx">
           <div className="card-light flex max-w-3xl flex-col items-start gap-6 p-6 sm:flex-row sm:items-center md:p-8">
-            <img
+            <OptionalImage
               src={founder.photo}
               alt={founder.name}
               className="h-28 w-28 shrink-0 rounded-full object-cover"
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-              }}
             />
             <div>
               <h2 className="font-display text-2xl font-bold tracking-tight">
