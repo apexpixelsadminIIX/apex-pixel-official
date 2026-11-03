@@ -4,6 +4,7 @@ import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 
 import { ButtonLink } from "@/components/site/ButtonLink";
+import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import { SmartLink } from "@/components/site/SmartLink";
 import { Stripes } from "@/components/site/Stripes";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
@@ -106,16 +107,18 @@ function ContactPage() {
     <main>
       <header className="tone-light section-pad pb-14 pt-36 md:pb-16 md:pt-44">
         <div className="container-apx">
-          <Stripes count={6} itemClassName="h-2.5 w-9" />
-          <h1 className="mt-6">Get in touch</h1>
-          <p className="muted mt-4 max-w-2xl">Pick whichever way is easiest.</p>
+          <Reveal>
+            <Stripes count={6} itemClassName="h-2.5 w-9" />
+            <h1 className="mt-6">Get in touch</h1>
+            <p className="muted mt-4 max-w-2xl">Pick whichever way is easiest.</p>
+          </Reveal>
         </div>
       </header>
 
       <section className="tone-light pb-20">
         <div className="container-apx grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
           {/* Left: enquiry form */}
-          <div className="card-light p-6 md:p-8">
+          <Reveal className="card-light p-6 md:p-8">
             <h2 className="font-display text-2xl font-bold tracking-tight">
               Send an enquiry
             </h2>
@@ -223,7 +226,7 @@ function ContactPage() {
               <div className="sm:col-span-2">
                 <button
                   type="submit"
-                  className="inline-flex h-12 cursor-pointer items-center justify-center rounded-full bg-orange px-7 text-base font-semibold text-ink shadow-glow-orange transition-all hover:brightness-110"
+                  className="inline-flex h-12 cursor-pointer items-center justify-center rounded-full bg-orange px-7 text-base font-semibold text-ink shadow-glow-orange transition-all hover:-translate-y-0.5 hover:brightness-110 hover:shadow-glow-orange-strong active:translate-y-0 active:brightness-95"
                 >
                   Send the enquiry
                 </button>
@@ -240,11 +243,11 @@ function ContactPage() {
                 </p>
               </div>
             </form>
-          </div>
+          </Reveal>
 
           {/* Right: three stacked cards */}
-          <div className="flex flex-col gap-4">
-            <div className="card-light p-6">
+          <Stagger className="flex flex-col gap-4">
+            <StaggerItem className="card-light card-lift p-6">
               <span className="grid h-11 w-11 place-items-center rounded-full bg-green text-white">
                 <WhatsAppIcon className="h-5 w-5" />
               </span>
@@ -257,9 +260,9 @@ function ContactPage() {
                   Message on WhatsApp
                 </ButtonLink>
               </div>
-            </div>
+            </StaggerItem>
 
-            <div className="card-light p-6">
+            <StaggerItem className="card-light card-lift p-6">
               <span className="grid h-11 w-11 place-items-center rounded-full bg-orange text-ink">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden>
                   <path d="M8 2v4M16 2v4" /><rect width="18" height="18" x="3" y="4" rx="2" /><path d="M3 10h18" />
@@ -276,9 +279,9 @@ function ContactPage() {
                   Book a call
                 </ButtonLink>
               </div>
-            </div>
+            </StaggerItem>
 
-            <div className="card-light p-6">
+            <StaggerItem className="card-light card-lift p-6">
               <span className="grid h-11 w-11 place-items-center rounded-full bg-navy text-white">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden>
                   <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" />
@@ -304,12 +307,12 @@ function ContactPage() {
                   View on Google Maps
                 </ButtonLink>
               </div>
-            </div>
+            </StaggerItem>
 
             <p className="muted px-1 text-xs">
               Founded by {founder.name}. Apex Pixels works from {site.location}.
             </p>
-          </div>
+          </Stagger>
         </div>
       </section>
     </main>

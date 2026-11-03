@@ -1,5 +1,6 @@
 import { packageGroups, packages, priceNote, type Package } from "@/config/site";
 import { ButtonLink } from "./ButtonLink";
+import { Stagger, StaggerItem } from "./Reveal";
 
 export function PackageCard({
   pkg,
@@ -9,7 +10,7 @@ export function PackageCard({
   showFeatures: boolean;
 }) {
   return (
-    <article className="card-dark flex flex-col p-6 transition-colors duration-200 hover:border-orange/40">
+    <article className="card-dark card-lift flex h-full flex-col p-6 hover:border-orange/40">
       <p className="text-xs font-semibold uppercase tracking-widest text-on-dark-muted">
         {pkg.label}
       </p>
@@ -73,13 +74,15 @@ export function PricingGrid({
           <h3 className="font-display text-lg font-semibold text-on-dark-muted">
             {packageGroups[group]}
           </h3>
-          <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {packages
               .filter((p) => p.group === group)
               .map((p) => (
-                <PackageCard key={p.id} pkg={p} showFeatures={showFeatures} />
+                <StaggerItem key={p.id} className="h-full">
+                  <PackageCard pkg={p} showFeatures={showFeatures} />
+                </StaggerItem>
               ))}
-          </div>
+          </Stagger>
         </div>
       ))}
       <p className="muted mt-10 max-w-3xl text-sm">{priceNote}</p>

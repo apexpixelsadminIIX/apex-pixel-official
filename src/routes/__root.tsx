@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
-  Outlet,
   Link,
   createRootRouteWithContext,
   useRouter,
@@ -8,10 +7,12 @@ import {
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
+import { MotionConfig } from "framer-motion";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { AnimatedOutlet } from "@/components/site/AnimatedOutlet";
 import { site } from "@/config/site";
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { Footer } from "@/components/site/Footer";
@@ -24,7 +25,7 @@ function NotFoundComponent() {
   return (
     <main className="tone-dark grid-bg-dark flex min-h-[80vh] flex-col items-center justify-center px-4 text-center">
       <img
-        src="/logo-mark.png"
+        src="/logo-mark.webp"
         alt=""
         aria-hidden
         className="h-24 w-auto opacity-90"
@@ -133,12 +134,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ScrollProgress />
-      <Navbar />
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-      <Footer />
-      <WhatsAppFab />
+      {/* Respect prefers-reduced-motion for every Framer Motion animation:
+          movements become simple opacity fades. */}
+      <MotionConfig reducedMotion="user">
+        <ScrollProgress />
+        <Navbar />
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <AnimatedOutlet />
+        <Footer />
+        <WhatsAppFab />
+      </MotionConfig>
     </QueryClientProvider>
   );
 }

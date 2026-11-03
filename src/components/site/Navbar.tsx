@@ -19,7 +19,8 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 24));
+  // Shrinks slightly after 40px of scroll with a smooth transition.
+  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 40));
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -58,7 +59,7 @@ export function Navbar() {
             ariaLabel={site.name}
           >
             <img
-              src="/logo-full.png"
+              src="/logo-full.webp"
               alt={site.name}
               className={cn(
                 "w-auto transition-all duration-300",
@@ -115,7 +116,7 @@ export function Navbar() {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3 rounded-2xl bg-white px-4 py-2">
-                <img src="/logo-full.png" alt={site.name} className="h-8 w-auto" />
+                <img src="/logo-full.webp" alt={site.name} className="h-8 w-auto" />
               </div>
               <button
                 type="button"

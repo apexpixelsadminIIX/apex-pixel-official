@@ -13,7 +13,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
           <div>
             <div className="inline-flex items-center rounded-2xl bg-white px-4 py-2.5">
-              <img src="/logo-full.png" alt={site.name} className="h-9 w-auto" />
+              <img src="/logo-full.webp" alt={site.name} className="h-9 w-auto" />
             </div>
             <p className="muted mt-4 text-sm">{site.tagline}</p>
             <Stripes count={6} className="mt-5" itemClassName="h-2 w-6" />
@@ -28,7 +28,7 @@ export function Footer() {
                 <li key={link.href}>
                   <SmartLink
                     href={link.href}
-                    className="text-sm text-on-dark transition-colors hover:text-orange"
+                    className="link-underline text-sm text-on-dark transition-colors hover:text-orange"
                   >
                     {link.label}
                   </SmartLink>
@@ -45,7 +45,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-on-dark transition-colors hover:text-orange"
+                  className="link-underline text-on-dark transition-colors hover:text-orange"
                 >
                   {site.email}
                 </a>
@@ -55,7 +55,7 @@ export function Footer() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-on-dark transition-colors hover:text-orange"
+                  className="link-underline text-on-dark transition-colors hover:text-orange"
                 >
                   {site.whatsappDisplay}
                 </a>
@@ -70,13 +70,13 @@ export function Footer() {
           <div className="flex gap-5">
             <SmartLink
               href="/privacy"
-              className="transition-colors hover:text-orange"
+              className="link-underline transition-colors hover:text-orange"
             >
               Privacy
             </SmartLink>
             <SmartLink
               href="/terms"
-              className="transition-colors hover:text-orange"
+              className="link-underline transition-colors hover:text-orange"
             >
               Terms
             </SmartLink>

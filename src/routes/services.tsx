@@ -4,6 +4,7 @@ import { Check } from "lucide-react";
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { ContactTrio } from "@/components/site/ContactTrio";
 import { PackageCard, PricingGrid } from "@/components/site/PricingGrid";
+import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import { Stripes } from "@/components/site/Stripes";
 import {
   carePlans,
@@ -62,9 +63,11 @@ function PageHeader({
   return (
     <header className="tone-light section-pad pb-14 pt-36 md:pb-16 md:pt-44">
       <div className="container-apx">
-        <Stripes count={6} itemClassName="h-2.5 w-9" />
-        <h1 className="mt-6">{title}</h1>
-        {sub && <p className="muted mt-4 max-w-2xl">{sub}</p>}
+        <Reveal>
+          <Stripes count={6} itemClassName="h-2.5 w-9" />
+          <h1 className="mt-6">{title}</h1>
+          {sub && <p className="muted mt-4 max-w-2xl">{sub}</p>}
+        </Reveal>
       </div>
     </header>
   );
@@ -146,11 +149,13 @@ function WebsitesSection() {
   return (
     <section id="websites" className="tone-light section-pad scroll-mt-28">
       <div className="container-apx">
-        <h2 className="font-display text-3xl font-bold tracking-tight">
-          {websites?.title}
-        </h2>
-        <p className="muted mt-4 max-w-2xl">{websites?.description}</p>
-        <GoodFor text={websites?.goodFor ?? ""} tone="light" />
+        <Reveal>
+          <h2 className="font-display text-3xl font-bold tracking-tight">
+            {websites?.title}
+          </h2>
+          <p className="muted mt-4 max-w-2xl">{websites?.description}</p>
+          <GoodFor text={websites?.goodFor ?? ""} tone="light" />
+        </Reveal>
         <h3 className="mt-10 font-display text-lg font-semibold">
           Typical features
         </h3>
@@ -161,26 +166,29 @@ function WebsitesSection() {
           </ButtonLink>
         </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-ink/10 bg-white p-5">
-            <p className="text-xs font-bold uppercase tracking-widest text-orange">
-              Option A
-            </p>
-            <p className="muted mt-2 text-sm">{optionA}</p>
-          </div>
-          <div className="rounded-2xl border border-ink/10 bg-white p-5">
-            <p className="text-xs font-bold uppercase tracking-widest text-orange">
-              Option B
-            </p>
-            <p className="muted mt-2 text-sm">{optionB}</p>
-          </div>
-        </div>
-
-        <div className="mt-6 grid gap-4 lg:grid-cols-3">
-          {websitePackages.map((pkg) => (
-            <PackageCard key={pkg.id} pkg={pkg} showFeatures />
+        <Stagger className="mt-12 grid gap-4 md:grid-cols-2">
+          {[
+            { label: "Option A", text: optionA },
+            { label: "Option B", text: optionB },
+          ].map((option) => (
+            <StaggerItem key={option.label} className="h-full">
+              <div className="card-lift h-full rounded-2xl border border-ink/10 bg-white p-5 hover:border-orange/40">
+                <p className="text-xs font-bold uppercase tracking-widest text-orange">
+                  {option.label}
+                </p>
+                <p className="muted mt-2 text-sm">{option.text}</p>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
+
+        <Stagger className="mt-6 grid gap-4 lg:grid-cols-3">
+          {websitePackages.map((pkg) => (
+            <StaggerItem key={pkg.id} className="h-full">
+              <PackageCard pkg={pkg} showFeatures />
+            </StaggerItem>
+          ))}
+        </Stagger>
       </div>
     </section>
   );
@@ -197,11 +205,13 @@ function SoftwareSection() {
   return (
     <section id="software" className="tone-dark section-pad scroll-mt-28">
       <div className="container-apx">
-        <h2 className="font-display text-3xl font-bold tracking-tight">
-          {software?.title}
-        </h2>
-        <p className="muted mt-4 max-w-2xl">{software?.description}</p>
-        <GoodFor text={software?.goodFor ?? ""} tone="dark" />
+        <Reveal>
+          <h2 className="font-display text-3xl font-bold tracking-tight">
+            {software?.title}
+          </h2>
+          <p className="muted mt-4 max-w-2xl">{software?.description}</p>
+          <GoodFor text={software?.goodFor ?? ""} tone="dark" />
+        </Reveal>
         <h3 className="mt-10 font-display text-lg font-semibold">
           Typical features
         </h3>
@@ -222,11 +232,13 @@ function SoftwareSection() {
           <p className="muted mt-2 text-sm">{discoveryNote.payment}</p>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
+        <Stagger className="mt-6 grid gap-4 md:grid-cols-2">
           {softwarePackages.map((pkg) => (
-            <PackageCard key={pkg.id} pkg={pkg} showFeatures />
+            <StaggerItem key={pkg.id} className="h-full">
+              <PackageCard pkg={pkg} showFeatures />
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
@@ -240,24 +252,26 @@ function ContentSection() {
   return (
     <section id="content" className="tone-light scroll-mt-28 py-16 md:py-20">
       <div className="container-apx">
-        <div className="card-light max-w-2xl p-6 md:p-8">
-          <span className="rounded-full border border-green/30 bg-green/10 px-3 py-1 text-xs font-semibold text-green">
-            Also offered
-          </span>
-          <h2 className="mt-3 font-display text-2xl font-bold tracking-tight">
-            {content?.title}
-          </h2>
-          <p className="muted mt-3 text-sm">{content?.description}</p>
-          <CheckList items={content?.items ?? []} tone="light" columns={1} />
-          <div className="mt-5 flex flex-wrap items-center gap-4">
-            <span className="text-sm font-semibold text-orange">
-              {content?.note}
+        <Reveal>
+          <div className="card-light max-w-2xl p-6 md:p-8">
+            <span className="rounded-full border border-green/30 bg-green/10 px-3 py-1 text-xs font-semibold text-green">
+              Also offered
             </span>
-            <ButtonLink href="/contact" variant="outline-light" size="sm">
-              Ask about content
-            </ButtonLink>
+            <h2 className="mt-3 font-display text-2xl font-bold tracking-tight">
+              {content?.title}
+            </h2>
+            <p className="muted mt-3 text-sm">{content?.description}</p>
+            <CheckList items={content?.items ?? []} tone="light" columns={1} />
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <span className="text-sm font-semibold text-orange">
+                {content?.note}
+              </span>
+              <ButtonLink href="/contact" variant="outline-light" size="sm">
+                Ask about content
+              </ButtonLink>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -269,25 +283,29 @@ function AfterLaunch() {
   return (
     <section className="tone-dark section-pad">
       <div className="container-apx">
-        <h2>After launch</h2>
-        <p className="muted mt-4 max-w-2xl">
-          Every launch is followed by a period of free bug fixes. After that, a
-          care plan keeps the site or app healthy.
-        </p>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <Reveal>
+          <h2>After launch</h2>
+          <p className="muted mt-4 max-w-2xl">
+            Every launch is followed by a period of free bug fixes. After that, a
+            care plan keeps the site or app healthy.
+          </p>
+        </Reveal>
+        <Stagger className="mt-10 grid gap-4 md:grid-cols-3">
           {carePlans.map((plan) => (
-            <article key={plan.id} className="card-dark flex flex-col p-6">
-              <h3 className="font-display text-xl font-semibold">{plan.name}</h3>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-on-dark-muted">
-                {plan.forWhom}
-              </p>
-              <p className="mt-3 font-display text-lg font-bold text-orange">
-                {plan.price}
-              </p>
-              <p className="muted mt-3 text-sm">{plan.text}</p>
-            </article>
+            <StaggerItem key={plan.id} className="h-full">
+              <article className="card-dark card-lift flex h-full flex-col p-6">
+                <h3 className="font-display text-xl font-semibold">{plan.name}</h3>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-on-dark-muted">
+                  {plan.forWhom}
+                </p>
+                <p className="mt-3 font-display text-lg font-bold text-orange">
+                  {plan.price}
+                </p>
+                <p className="muted mt-3 text-sm">{plan.text}</p>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
@@ -299,21 +317,23 @@ function ExtrasSection() {
   return (
     <section className="tone-light section-pad">
       <div className="container-apx">
-        <h2 className="font-display text-3xl font-bold tracking-tight">Extras</h2>
-        <div className="mt-8 max-w-3xl overflow-hidden rounded-2xl border border-ink/10 bg-white">
-          <table className="w-full text-sm">
-            <tbody className="divide-y divide-ink/10">
-              {extras.map((extra) => (
-                <tr key={extra.name}>
-                  <td className="px-5 py-3.5 font-medium">{extra.name}</td>
-                  <td className="px-5 py-3.5 text-right text-on-light-muted">
-                    {extra.price}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <Reveal>
+          <h2 className="font-display text-3xl font-bold tracking-tight">Extras</h2>
+          <div className="mt-8 max-w-3xl overflow-hidden rounded-2xl border border-ink/10 bg-white">
+            <table className="w-full text-sm">
+              <tbody className="divide-y divide-ink/10">
+                {extras.map((extra) => (
+                  <tr key={extra.name}>
+                    <td className="px-5 py-3.5 font-medium">{extra.name}</td>
+                    <td className="px-5 py-3.5 text-right text-on-light-muted">
+                      {extra.price}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -325,7 +345,9 @@ function PricingSection() {
   return (
     <section className="tone-dark section-pad">
       <div className="container-apx">
-        <h2>Clear starting prices</h2>
+        <Reveal>
+          <h2>Clear starting prices</h2>
+        </Reveal>
         <PricingGrid showFeatures />
       </div>
     </section>
@@ -336,7 +358,9 @@ function FinalTrio() {
   return (
     <section className="tone-dark pb-20">
       <div className="container-apx">
-        <ContactTrio tone="dark" />
+        <Reveal>
+          <ContactTrio tone="dark" />
+        </Reveal>
       </div>
     </section>
   );

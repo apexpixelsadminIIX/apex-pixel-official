@@ -9,7 +9,7 @@ import { WhatsAppIcon } from "./WhatsAppIcon";
  */
 export function ContactTrio({ tone = "dark" }: { tone?: "dark" | "light" }) {
   const cardClass = cn(
-    "flex flex-col items-start gap-3 p-6 transition-all duration-200 hover:-translate-y-0.5",
+    "card-lift flex flex-col items-start gap-3 p-6",
     tone === "dark"
       ? "card-dark hover:border-orange/40"
       : "card-light hover:border-orange/40",
