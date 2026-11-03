@@ -151,6 +151,80 @@
   );
 }
 
+/* ---- Motion ---- */
+
+/* Marquee strip: slow continuous scroll, pauses on hover, static when the
+   user prefers reduced motion. */
+@utility marquee-track {
+  animation: marquee-scroll 40s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Cards lift 6px on hover with a deeper shadow, and a thin orange stripe
+   sweeps across the top edge. Transform and opacity only. */
+@utility card-lift {
+  position: relative;
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.2s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lift);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Animated underline for text links: a 1.5px line sweeps in from the left. */
+@utility link-underline {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1.5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+  }
+}
+
 /* Dark-surface card */
 @utility card-dark {
   background-color: var(--ink-2);
@@ -228,5 +302,17 @@
 
   .tone-light .muted {
     color: var(--on-light-muted);
+  }
+
+  /* Strict reduced-motion fallbacks: no marquee movement, no smooth scroll.
+     Framer Motion handles the rest through MotionConfig reducedMotion. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .marquee-track {
+      animation: none;
+    }
   }
 }
