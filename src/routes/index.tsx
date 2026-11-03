@@ -1,10 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  motion,
-  useMotionValue,
-  useScroll,
-  useSpring,
-} from "framer-motion";
+import { motion, useMotionValue, useScroll, useSpring } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
 import { BrowserFrame } from "@/components/site/BrowserFrame";
@@ -22,6 +17,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
+  bookingHref,
   buildTopics,
   faqs,
   marqueeWords,
@@ -103,9 +99,7 @@ function HeadlineLine({
         }}
         transition={{
           y: { duration: 0.6, ease: EASE, delay },
-          ...(glow
-            ? { textShadow: { duration: 1.1, ease: "easeOut", delay } }
-            : {}),
+          ...(glow ? { textShadow: { duration: 1.1, ease: "easeOut", delay } } : {}),
         }}
       >
         {children}
@@ -158,14 +152,14 @@ function Hero() {
               transition={{ duration: 0.5, ease: EASE, delay: 0.95 }}
             >
               <p className="muted mt-6 max-w-xl">
-                Apex Pixels designs and builds websites, web apps and business
-                software, and sets up the tools that show you how they are doing.
+                Apex Pixels designs and builds websites, web apps and business software, and sets up
+                the tools that show you how they are doing.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <ButtonLink href={whatsappUrl} size="lg">
                   Message on WhatsApp
                 </ButtonLink>
-                <ButtonLink href="/contact?intent=call" variant="outline-dark" size="lg">
+                <ButtonLink href={bookingHref} variant="outline-dark" size="lg">
                   Book a 15-minute call
                 </ButtonLink>
                 <SmartLink
@@ -176,8 +170,7 @@ function Hero() {
                 </SmartLink>
               </div>
               <p className="muted mt-6 text-sm">
-                Based in Chennai, Tamil Nadu. Building for businesses anywhere in
-                India.
+                Based in Chennai, Tamil Nadu. Building for businesses anywhere in India.
               </p>
             </motion.div>
           </div>
@@ -229,11 +222,7 @@ function MarqueeStrip() {
     <section className="tone-light overflow-hidden border-y border-ink/8 py-4">
       <div className="marquee-track flex w-max items-center whitespace-nowrap">
         {[0, 1].map((copy) => (
-          <div
-            key={copy}
-            aria-hidden={copy === 1}
-            className="flex items-center gap-6 pr-6"
-          >
+          <div key={copy} aria-hidden={copy === 1} className="flex items-center gap-6 pr-6">
             {half.map((word, i) => (
               <span key={i} className="flex items-center gap-6">
                 <span className="font-display text-sm font-semibold uppercase tracking-widest text-on-light-muted">
@@ -431,13 +420,12 @@ function WhyLion() {
             <div>
               <h2>Why a lion in a triangle?</h2>
               <p className="muted mt-6 max-w-2xl">
-                Every business starts as small pieces: a product, a promise, a few
-                good people. Apex Pixels exists to arrange those pieces until
-                something unmistakable looks back at the world.
+                Every business starts as small pieces: a product, a promise, a few good people. Apex
+                Pixels exists to arrange those pieces until something unmistakable looks back at the
+                world.
               </p>
               <p className="muted mt-4 max-w-2xl">
-                Strength is quiet, and presence is built one careful detail at a
-                time.
+                Strength is quiet, and presence is built one careful detail at a time.
               </p>
               <SmartLink
                 href="/about#lion"
@@ -475,11 +463,7 @@ function Questions() {
         <Reveal>
           <h2>Questions</h2>
         </Reveal>
-        <Accordion
-          type="single"
-          collapsible
-          className="mt-10 max-w-3xl border-t border-ink/10"
-        >
+        <Accordion type="single" collapsible className="mt-10 max-w-3xl border-t border-ink/10">
           {faqs.map((faq) => (
             <AccordionItem
               key={faq.question}
@@ -489,9 +473,7 @@ function Questions() {
               <AccordionTrigger className="py-5 text-left font-display text-base font-semibold hover:no-underline hover:text-orange">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="muted pb-5 text-sm">
-                {faq.answer}
-              </AccordionContent>
+              <AccordionContent className="muted pb-5 text-sm">{faq.answer}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

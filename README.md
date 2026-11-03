@@ -22,3 +22,8 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Setup
+
+1. Create a free access key at web3forms.com using apexpixels.admin@gmail.com. Put it in a `.env` file in the project root as `VITE_WEB3FORMS_KEY=your-key`. Until a key exists, the enquiry form opens WhatsApp with the enquiry details instead.
+2. Create a free Cal.com account, make a 15-minute event, and paste its link into `bookingUrl` in `src/config/site.ts`. Until then, the "Book a 15-minute call" buttons open WhatsApp with a call request.

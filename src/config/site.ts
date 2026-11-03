@@ -12,19 +12,40 @@ export const site = {
   email: "apexpixels.admin@gmail.com",
   address:
     "Plot - 1A, 3F, Sadayandi Nayakar Street, RG Nagar, Medavakkam, Chennai - 600100, Tamil Nadu",
-  bookingUrl: "", // Placeholder — set when the booking link exists (prompt 4).
+  // Paste the booking page link here, for example https://cal.com/your-name/15min
+  bookingUrl: "",
+  // Web3Forms access key. Prefer setting VITE_WEB3FORMS_KEY in a .env file; this is the fallback.
+  formKey: "",
   siteUrl: "https://example.com", // Placeholder until the domain is bought.
   location: "Chennai, Tamil Nadu",
   footerLine: "© 2026 Apex Pixels. Chennai, Tamil Nadu.",
 } as const;
 
-/** Prefilled WhatsApp conversation link. */
-export const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
-  "Hi Apex Pixels, I would like to talk about a website for my business.",
-)}`;
+/** WhatsApp link with a prefilled message. */
+export const waLink = (message: string) =>
+  `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-/** The booking action. Falls back to the contact page until bookingUrl exists. */
-export const bookingHref = site.bookingUrl || "/contact?intent=call";
+export const whatsappMessages = {
+  general: "Hi Apex Pixels, I would like to talk about a project.",
+  call: "Hi Apex Pixels, I would like to book a 15-minute call.",
+  package: (packageName: string) =>
+    `Hi Apex Pixels, I am interested in the ${packageName} package.`,
+} as const;
+
+/** General WhatsApp link, used by every WhatsApp button. */
+export const whatsappUrl = waLink(whatsappMessages.general);
+
+/** WhatsApp link for a package card. */
+export const packageWhatsappUrl = (packageName: string) =>
+  waLink(whatsappMessages.package(packageName));
+
+/**
+ * The booking action, shared by every "Book a 15-minute call" button.
+ * Opens the booking page when bookingUrl is set; otherwise opens WhatsApp with
+ * a call request, so the button never leads nowhere.
+ */
+export const getBookingHref = () => site.bookingUrl || waLink(whatsappMessages.call);
+export const bookingHref = getBookingHref();
 
 export type NavLink = { label: string; href: string };
 
@@ -107,8 +128,7 @@ export const packages: Package[] = [
     price: "₹1,50,000",
     label: "Starting from",
     timeline: "8 to 12 weeks",
-    discovery:
-      "Starts with a paid discovery step of ₹15,000, credited in full to the project",
+    discovery: "Starts with a paid discovery step of ₹15,000, credited in full to the project",
     text: "One custom web application that replaces spreadsheets and WhatsApp, with logins, roles, dashboards and reports.",
     features: [
       "User accounts with up to 3 roles",
@@ -127,8 +147,7 @@ export const packages: Package[] = [
     price: "₹4,50,000",
     label: "Starting from, by assessment",
     timeline: "12 to 20 weeks",
-    discovery:
-      "Starts with a paid discovery step of ₹25,000, credited in full to the project",
+    discovery: "Starts with a paid discovery step of ₹25,000, credited in full to the project",
     text: "Multi-module, multi-branch business management software, planned and delivered in phases.",
     features: [
       "4 to 5 modules chosen from inventory and stock, billing and invoicing, CRM and leads, purchase and vendors, basic accounts, staff records and attendance, and reports",
@@ -198,12 +217,7 @@ export const extras: Extra[] = [
 export const priceNote =
   "Starting prices. Domain registration, hosting, payment gateway fees, app registration and app setup are paid by the client; Apex Pixels can help set them up. The final quote is confirmed after a short call.";
 
-export const marqueeWords = [
-  "Websites",
-  "Web apps",
-  "Business software",
-  "Social media content",
-];
+export const marqueeWords = ["Websites", "Web apps", "Business software", "Social media content"];
 
 export type Faq = { question: string; answer: string };
 
@@ -422,8 +436,7 @@ export const caseStudy = {
       text: "A mobile-first layout.",
     },
   ],
-  look:
-    "A fresh green palette taken from the client's own brand, with sunflower yellow and orange as accents. Plain, factual language throughout, in line with the client's guidelines.",
+  look: "A fresh green palette taken from the client's own brand, with sunflower yellow and orange as accents. Plain, factual language throughout, in line with the client's guidelines.",
   screenshots: [1, 2, 3, 4].map((n) => `/work/excel-packaging-${n}.jpg`),
   nextProject: {
     name: "Hospitality Critic Solutions",
@@ -471,8 +484,7 @@ export const founder = {
   name: site.founder,
   title: "Founder, Apex Pixels",
   photo: "/manish.jpg", // Optional; hidden until the file is uploaded.
-  text:
-    "I started Apex Pixels to build websites and software that businesses can be proud of and actually use. I work directly with every client, from the first call to the day the project goes live.",
+  text: "I started Apex Pixels to build websites and software that businesses can be proud of and actually use. I work directly with every client, from the first call to the day the project goes live.",
 };
 
 export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
