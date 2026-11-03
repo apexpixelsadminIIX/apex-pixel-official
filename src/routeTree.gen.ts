@@ -16,7 +16,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WorkRouteImport } from './routes/work'
-import { Route as WorkExcelPackagingRouteImport } from './routes/work.excel-packaging'
+import { Route as WorkExcelPackagingRouteImport } from './routes/work_.excel-packaging'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -54,9 +54,9 @@ const WorkRoute = WorkRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const WorkExcelPackagingRoute = WorkExcelPackagingRouteImport.update({
-  id: '/excel-packaging',
-  path: '/excel-packaging',
-  getParentRoute: () => WorkRoute,
+  id: '/work_/excel-packaging',
+  path: '/work/excel-packaging',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -66,7 +66,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
-  '/work': typeof WorkRouteWithChildren
+  '/work': typeof WorkRoute
   '/work/excel-packaging': typeof WorkExcelPackagingRoute
 }
 export interface FileRoutesByTo {
@@ -76,7 +76,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
-  '/work': typeof WorkRouteWithChildren
+  '/work': typeof WorkRoute
   '/work/excel-packaging': typeof WorkExcelPackagingRoute
 }
 export interface FileRoutesById {
@@ -87,8 +87,8 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
-  '/work': typeof WorkRouteWithChildren
-  '/work/excel-packaging': typeof WorkExcelPackagingRoute
+  '/work': typeof WorkRoute
+  '/work_/excel-packaging': typeof WorkExcelPackagingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,7 +120,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/work'
-    | '/work/excel-packaging'
+    | '/work_/excel-packaging'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -130,7 +130,8 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
-  WorkRoute: typeof WorkRouteWithChildren
+  WorkRoute: typeof WorkRoute
+  WorkExcelPackagingRoute: typeof WorkExcelPackagingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -184,25 +185,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/work/excel-packaging': {
-      id: '/work/excel-packaging'
-      path: '/excel-packaging'
+    '/work_/excel-packaging': {
+      id: '/work_/excel-packaging'
+      path: '/work/excel-packaging'
       fullPath: '/work/excel-packaging'
       preLoaderRoute: typeof WorkExcelPackagingRouteImport
-      parentRoute: typeof WorkRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface WorkRouteChildren {
-  WorkExcelPackagingRoute: typeof WorkExcelPackagingRoute
-}
-
-const WorkRouteChildren: WorkRouteChildren = {
-  WorkExcelPackagingRoute: WorkExcelPackagingRoute,
-}
-
-const WorkRouteWithChildren = WorkRoute._addFileChildren(WorkRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -211,7 +202,8 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
-  WorkRoute: WorkRouteWithChildren,
+  WorkRoute: WorkRoute,
+  WorkExcelPackagingRoute: WorkExcelPackagingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
