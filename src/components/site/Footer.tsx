@@ -28,7 +28,7 @@ export function Footer() {
                 <li key={link.href}>
                   <SmartLink
                     href={link.href}
-                    className="text-sm text-on-dark transition-colors hover:text-orange"
+                    className="link-underline text-sm text-on-dark transition-colors hover:text-orange"
                   >
                     {link.label}
                   </SmartLink>
@@ -45,7 +45,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-on-dark transition-colors hover:text-orange"
+                  className="link-underline text-on-dark transition-colors hover:text-orange"
                 >
                   {site.email}
                 </a>
@@ -55,7 +55,7 @@ export function Footer() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-on-dark transition-colors hover:text-orange"
+                  className="link-underline text-on-dark transition-colors hover:text-orange"
                 >
                   {site.whatsappDisplay}
                 </a>
@@ -70,13 +70,13 @@ export function Footer() {
           <div className="flex gap-5">
             <SmartLink
               href="/privacy"
-              className="transition-colors hover:text-orange"
+              className="link-underline transition-colors hover:text-orange"
             >
               Privacy
             </SmartLink>
             <SmartLink
               href="/terms"
-              className="transition-colors hover:text-orange"
+              className="link-underline transition-colors hover:text-orange"
             >
               Terms
             </SmartLink>
