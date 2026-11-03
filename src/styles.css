@@ -157,6 +157,10 @@
    user prefers reduced motion. */
 @utility marquee-track {
   animation: marquee-scroll 40s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 
 @keyframes marquee-scroll {
@@ -304,15 +308,12 @@
     color: var(--on-light-muted);
   }
 
-  /* Strict reduced-motion fallbacks: no marquee movement, no smooth scroll.
-     Framer Motion handles the rest through MotionConfig reducedMotion. */
+  /* Strict reduced-motion fallback: no smooth scrolling. The marquee and
+     every Framer Motion animation disable themselves through their own
+     reduced-motion rules and MotionConfig reducedMotion="user". */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
-    }
-
-    .marquee-track {
-      animation: none;
     }
   }
 }
