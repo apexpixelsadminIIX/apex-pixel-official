@@ -140,8 +140,8 @@ function WebsitesSection() {
     ["launch", "business", "professional"].includes(p.id),
   );
   const professional = packages.find((p) => p.id === "professional");
-  const optionA = professional?.features[0] ?? "";
-  const optionB = professional?.features[1] ?? "";
+  const optionA = (professional?.features[0] ?? "").replace(/^Option A:\s*/, "");
+  const optionB = (professional?.features[1] ?? "").replace(/^Option B:\s*/, "");
 
   return (
     <section id="websites" className="tone-light section-pad scroll-mt-28">

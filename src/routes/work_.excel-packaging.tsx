@@ -14,7 +14,7 @@ import { ContactTrio } from "@/components/site/ContactTrio";
 import { Stripes } from "@/components/site/Stripes";
 import { caseStudy } from "@/config/site";
 
-export const Route = createFileRoute("/work/excel-packaging")({
+export const Route = createFileRoute("/work_/excel-packaging")({
   component: ExcelPackagingCaseStudy,
   head: () => ({
     meta: [

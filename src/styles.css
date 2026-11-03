@@ -152,8 +152,13 @@
 /* Dark-surface card */
 @utility card-dark {
   background-color: var(--ink-2);
+  color: var(--on-dark);
   border: 1px solid rgb(255 255 255 / 8%);
   border-radius: var(--radius);
+
+  & .muted {
+    color: var(--on-dark-muted);
+  }
 }
 
 @utility card-light {
