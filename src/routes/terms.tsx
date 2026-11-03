@@ -30,7 +30,7 @@ function TermsPage() {
     <main className="tone-light section-pad pt-36 md:pt-44">
       <article className="container-apx max-w-3xl">
         <h1>Terms</h1>
-        <p className="muted mt-2 text-sm">Last updated: {site.lastUpdated ?? ""}</p>
+        <p className="muted mt-2 text-sm">Last updated: {lastUpdated}</p>
 
         <div className="muted mt-8 space-y-5 text-sm">
           <div>
