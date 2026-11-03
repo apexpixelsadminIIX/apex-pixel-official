@@ -46,7 +46,7 @@ export function SmartLink({
   const search = query
     ? Object.fromEntries(new URLSearchParams(query))
     : undefined;
-  const to = pathname as React.ComponentProps<typeof Link>["to"];
+  const to = pathname as never;
 
   return (
     <Link
