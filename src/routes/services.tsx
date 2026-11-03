@@ -205,11 +205,13 @@ function SoftwareSection() {
   return (
     <section id="software" className="tone-dark section-pad scroll-mt-28">
       <div className="container-apx">
-        <h2 className="font-display text-3xl font-bold tracking-tight">
-          {software?.title}
-        </h2>
-        <p className="muted mt-4 max-w-2xl">{software?.description}</p>
-        <GoodFor text={software?.goodFor ?? ""} tone="dark" />
+        <Reveal>
+          <h2 className="font-display text-3xl font-bold tracking-tight">
+            {software?.title}
+          </h2>
+          <p className="muted mt-4 max-w-2xl">{software?.description}</p>
+          <GoodFor text={software?.goodFor ?? ""} tone="dark" />
+        </Reveal>
         <h3 className="mt-10 font-display text-lg font-semibold">
           Typical features
         </h3>
@@ -230,11 +232,13 @@ function SoftwareSection() {
           <p className="muted mt-2 text-sm">{discoveryNote.payment}</p>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
+        <Stagger className="mt-6 grid gap-4 md:grid-cols-2">
           {softwarePackages.map((pkg) => (
-            <PackageCard key={pkg.id} pkg={pkg} showFeatures />
+            <StaggerItem key={pkg.id} className="h-full">
+              <PackageCard pkg={pkg} showFeatures />
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
@@ -248,24 +252,26 @@ function ContentSection() {
   return (
     <section id="content" className="tone-light scroll-mt-28 py-16 md:py-20">
       <div className="container-apx">
-        <div className="card-light max-w-2xl p-6 md:p-8">
-          <span className="rounded-full border border-green/30 bg-green/10 px-3 py-1 text-xs font-semibold text-green">
-            Also offered
-          </span>
-          <h2 className="mt-3 font-display text-2xl font-bold tracking-tight">
-            {content?.title}
-          </h2>
-          <p className="muted mt-3 text-sm">{content?.description}</p>
-          <CheckList items={content?.items ?? []} tone="light" columns={1} />
-          <div className="mt-5 flex flex-wrap items-center gap-4">
-            <span className="text-sm font-semibold text-orange">
-              {content?.note}
+        <Reveal>
+          <div className="card-light max-w-2xl p-6 md:p-8">
+            <span className="rounded-full border border-green/30 bg-green/10 px-3 py-1 text-xs font-semibold text-green">
+              Also offered
             </span>
-            <ButtonLink href="/contact" variant="outline-light" size="sm">
-              Ask about content
-            </ButtonLink>
+            <h2 className="mt-3 font-display text-2xl font-bold tracking-tight">
+              {content?.title}
+            </h2>
+            <p className="muted mt-3 text-sm">{content?.description}</p>
+            <CheckList items={content?.items ?? []} tone="light" columns={1} />
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <span className="text-sm font-semibold text-orange">
+                {content?.note}
+              </span>
+              <ButtonLink href="/contact" variant="outline-light" size="sm">
+                Ask about content
+              </ButtonLink>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
