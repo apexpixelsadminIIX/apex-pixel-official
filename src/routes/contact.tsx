@@ -226,7 +226,7 @@ function ContactPage() {
               <div className="sm:col-span-2">
                 <button
                   type="submit"
-                  className="inline-flex h-12 cursor-pointer items-center justify-center rounded-full bg-orange px-7 text-base font-semibold text-ink shadow-glow-orange transition-all hover:brightness-110"
+                  className="inline-flex h-12 cursor-pointer items-center justify-center rounded-full bg-orange px-7 text-base font-semibold text-ink shadow-glow-orange transition-all hover:-translate-y-0.5 hover:brightness-110 hover:shadow-glow-orange-strong active:translate-y-0 active:brightness-95"
                 >
                   Send the enquiry
                 </button>
@@ -279,9 +279,9 @@ function ContactPage() {
                   Book a call
                 </ButtonLink>
               </div>
-            </div>
+            </StaggerItem>
 
-            <div className="card-light p-6">
+            <StaggerItem className="card-light card-lift p-6">
               <span className="grid h-11 w-11 place-items-center rounded-full bg-navy text-white">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden>
                   <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" />
@@ -307,12 +307,12 @@ function ContactPage() {
                   View on Google Maps
                 </ButtonLink>
               </div>
-            </div>
+            </StaggerItem>
 
             <p className="muted px-1 text-xs">
               Founded by {founder.name}. Apex Pixels works from {site.location}.
             </p>
-          </div>
+          </Stagger>
         </div>
       </section>
     </main>
