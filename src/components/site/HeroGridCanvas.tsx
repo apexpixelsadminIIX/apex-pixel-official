@@ -72,6 +72,7 @@ export function HeroGridCanvas() {
         x >= 0 && y >= 0 && x <= rect.width && y <= rect.height
           ? { x, y }
           : null;
+      start();
     };
     const onPointerLeave = () => {
       pointer = null;
