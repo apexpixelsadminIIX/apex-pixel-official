@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AnimatedOutlet } from "@/components/site/AnimatedOutlet";
 import { site } from "@/config/site";
 import { ButtonLink } from "@/components/site/ButtonLink";
+import { FloatingMark } from "@/components/site/FloatingMark";
 import { Footer } from "@/components/site/Footer";
 import { Navbar } from "@/components/site/Navbar";
 import { ScrollProgress } from "@/components/site/ScrollProgress";
@@ -27,7 +28,7 @@ function NotFoundComponent() {
       id="main"
       className="tone-dark grid-bg-dark flex min-h-[80vh] flex-col items-center justify-center px-4 text-center"
     >
-      <img src="/logo-mark.webp" alt="" aria-hidden className="h-24 w-auto opacity-90" />
+      <FloatingMark className="mx-auto w-56" />
       <h1 className="mt-8 font-display text-4xl font-bold tracking-tight md:text-5xl">
         This page took a wrong turn.
       </h1>

@@ -7,6 +7,7 @@ import { BrowserFrame } from "@/components/site/BrowserFrame";
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { ContactTrio } from "@/components/site/ContactTrio";
 import { HeroGridCanvas } from "@/components/site/HeroGridCanvas";
+import { FloatingMark } from "@/components/site/FloatingMark";
 import { PricingGrid } from "@/components/site/PricingGrid";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import { SmartLink } from "@/components/site/SmartLink";
@@ -451,16 +452,7 @@ function WhyLion() {
             </div>
           </Reveal>
           <Reveal>
-            <img
-              src="/logo-mark.webp"
-              alt=""
-              aria-hidden
-              width={1472}
-              height={698}
-              loading="lazy"
-              decoding="async"
-              className="mx-auto w-full max-w-xs opacity-90"
-            />
+            <FloatingMark className="mx-auto max-w-xs" />
           </Reveal>
         </div>
       </div>

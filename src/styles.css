@@ -325,3 +325,98 @@
   outline: 2px solid #fc641c;
   outline-offset: 2px;
 }
+
+/* ---- Soft gradient orbs ----
+   Two very faint, slowly drifting orbs behind the content of every dark and
+   light section. They sit behind the content (negative z-index inside an
+   isolated stacking context), only animate transform, and stay still when the
+   visitor prefers reduced motion. */
+.tone-dark,
+.tone-light {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.tone-dark::before,
+.tone-dark::after,
+.tone-light::before,
+.tone-light::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  width: clamp(320px, 46vw, 640px);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  will-change: transform;
+}
+
+.tone-dark::before {
+  top: -18%;
+  left: -8%;
+  background: radial-gradient(circle, rgb(252 100 28 / 14%) 0%, transparent 68%);
+  animation: orb-drift-a 24s ease-in-out infinite alternate;
+}
+.tone-dark::after {
+  bottom: -22%;
+  right: -6%;
+  background: radial-gradient(circle, rgb(60 70 230 / 20%) 0%, transparent 68%);
+  animation: orb-drift-b 30s ease-in-out infinite alternate;
+}
+.tone-light::before {
+  top: -20%;
+  right: -8%;
+  background: radial-gradient(circle, rgb(252 100 28 / 9%) 0%, transparent 68%);
+  animation: orb-drift-a 26s ease-in-out infinite alternate;
+}
+.tone-light::after {
+  bottom: -24%;
+  left: -6%;
+  background: radial-gradient(circle, rgb(40 50 200 / 7%) 0%, transparent 68%);
+  animation: orb-drift-b 32s ease-in-out infinite alternate;
+}
+
+/* Alternate sections mirror the orbs so neighbouring sections do not match. */
+.tone-dark:nth-child(even)::before {
+  left: auto;
+  right: -8%;
+}
+.tone-dark:nth-child(even)::after {
+  right: auto;
+  left: -6%;
+}
+.tone-light:nth-child(even)::before {
+  right: auto;
+  left: -8%;
+}
+.tone-light:nth-child(even)::after {
+  left: auto;
+  right: -6%;
+}
+
+@keyframes orb-drift-a {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(70px, 50px, 0) scale(1.14);
+  }
+}
+@keyframes orb-drift-b {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.08);
+  }
+  to {
+    transform: translate3d(-60px, -46px, 0) scale(0.94);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tone-dark::before,
+  .tone-dark::after,
+  .tone-light::before,
+  .tone-light::after {
+    animation: none;
+  }
+}

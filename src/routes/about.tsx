@@ -5,6 +5,7 @@ import { ClipboardCheck, FileSignature, IndianRupee, MessageCircle, Repeat2 } fr
 
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { ContactTrio } from "@/components/site/ContactTrio";
+import { FloatingMark } from "@/components/site/FloatingMark";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import { Stripes } from "@/components/site/Stripes";
 import { founder, lionStory, mapsUrl, principles, site } from "@/config/site";
@@ -50,21 +51,7 @@ function AboutPage() {
         <div className="container-apx">
           <div className="grid items-center gap-12 lg:grid-cols-[0.55fr_1fr]">
             <Reveal className="relative mx-auto w-full max-w-xs">
-              <Stripes
-                count={5}
-                itemClassName="h-2.5 w-10"
-                className="absolute -top-8 -left-4 rotate-[16deg] opacity-80"
-              />
-              <img
-                src="/logo-mark.webp"
-                alt=""
-                aria-hidden
-                width={1472}
-                height={698}
-                loading="lazy"
-                decoding="async"
-                className="relative z-10 w-full"
-              />
+              <FloatingMark />
             </Reveal>
             <Reveal>
               <div>
