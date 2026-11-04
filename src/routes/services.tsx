@@ -69,7 +69,7 @@ function Overview() {
           {packages.map((pkg) => (
             <StaggerItem key={pkg.id} className="h-full">
               <a
-                href={pkg.group === "small" ? "#websites" : "#apps"}
+                href={["webapp", "suite"].includes(pkg.id) ? "#apps" : "#websites"}
                 className="card-lift block h-full rounded-2xl border border-ink/10 bg-white p-4 hover:border-orange/40"
               >
                 <p className="text-xs font-semibold uppercase tracking-widest text-on-light-muted">
