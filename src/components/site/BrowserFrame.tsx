@@ -32,7 +32,7 @@ export function BrowserFrame({
       {src ? (
         <ScreenshotSlot src={src} label={fallback} />
       ) : (
-        <div className="grid aspect-video place-items-center bg-gradient-to-br from-navy/50 via-ink-2 to-ink">
+        <div className="grid aspect-[2/1] place-items-center bg-gradient-to-br from-navy/50 via-ink-2 to-ink">
           <span className="font-display text-sm font-semibold text-on-dark-muted">
             {label}
           </span>
@@ -44,7 +44,7 @@ export function BrowserFrame({
 
 function ScreenshotSlot({ src, label }: { src: string; label: string }) {
   return (
-    <div className="relative grid aspect-video place-items-center bg-gradient-to-br from-navy/50 via-ink-2 to-ink">
+    <div className="relative grid aspect-[2/1] place-items-center bg-gradient-to-br from-navy/50 via-ink-2 to-ink">
       <OptionalImage
         src={src}
         alt="Website screenshot"

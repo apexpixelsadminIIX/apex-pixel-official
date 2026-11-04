@@ -107,10 +107,10 @@ function ExcelPackagingCaseStudy() {
           <Reveal>
             <SectionHeading>Screenshots</SectionHeading>
           </Reveal>
-          <Stagger className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Stagger className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {caseStudy.screenshots.map((src, i) => (
               <StaggerItem key={src}>
-                <BrowserFrame label={`${caseStudy.title} — ${i + 1}`} src={src} />
+                <BrowserFrame label={`${caseStudy.title} — ${caseStudy.screenshotLabels[i]}`} src={src} />
               </StaggerItem>
             ))}
           </Stagger>

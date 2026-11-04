@@ -451,7 +451,8 @@ export const caseStudy = {
     },
   ],
   look: "A fresh green palette taken from the client's own brand, with sunflower yellow and orange as accents. Plain, factual language throughout, in line with the client's guidelines.",
-  screenshots: [1, 2, 3, 4].map((n) => `/work/excel-packaging-${n}.jpg`),
+  screenshots: [1, 2, 3, 4, 5, 6].map((n) => `/work/excel-packaging-${n}.jpg`),
+  screenshotLabels: ["Home", "E-Catalog", "Cleaning and Hospitality", "About", "Contact and enquiry", "Admin dashboard"],
   nextProject: {
     name: "Hospitality Critic Solutions",
     url: "https://hospitalitycriticsolutions.com/",
