@@ -312,7 +312,7 @@ function PricingSection() {
 
 function FinalTrio() {
   return (
-    <section className="tone-dark pb-20">
+    <section className="tone-dark no-orbs pb-20">
       <div className="container-apx">
         <Reveal>
           <ContactTrio tone="dark" />

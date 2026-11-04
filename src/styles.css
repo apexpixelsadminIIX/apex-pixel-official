@@ -515,15 +515,15 @@
 }
 .tone-dark:nth-child(6n),
 .tone-light:nth-child(6n) {
-  --a-left: -6%;
+  --a-left: 34%;
   --a-top: 16%;
-  --a-dx: -5%;
+  --a-dx: 5%;
   --a-dy: -8%;
   --a-s: 1.04;
   --a-delay: -28s;
-  --b-left: 30%;
+  --b-left: -16%;
   --b-top: 10%;
-  --b-dx: 5%;
+  --b-dx: -5%;
   --b-dy: 8%;
   --b-s: 1.06;
   --b-delay: -17s;
@@ -596,4 +596,10 @@
   .tone-light::after {
     animation: none;
   }
+}
+
+/* Footer and closing call-to-action bands stay calm. */
+.no-orbs::before,
+.no-orbs::after {
+  display: none;
 }

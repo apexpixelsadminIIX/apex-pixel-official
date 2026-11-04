@@ -34,7 +34,7 @@ function WorkPage() {
         </div>
       </header>
 
-      <section className="tone-light pb-20">
+      <section className="tone-light no-orbs pb-20">
         <div className="container-apx">
           <Stagger className="grid gap-6 md:grid-cols-2">
             {workItems.map((item) => (
@@ -66,7 +66,7 @@ function WorkPage() {
         </div>
       </section>
 
-      <section className="tone-light pb-20">
+      <section className="tone-light no-orbs pb-20">
         <div className="container-apx">
           <Reveal>
             <ContactTrio tone="light" />

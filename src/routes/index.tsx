@@ -493,7 +493,7 @@ function Questions() {
 
 function FinalCta() {
   return (
-    <section className="tone-dark section-pad">
+    <section className="tone-dark no-orbs section-pad">
       <div className="container-apx">
         <Reveal>
           <Stripes count={6} itemClassName="h-2.5 w-9" />

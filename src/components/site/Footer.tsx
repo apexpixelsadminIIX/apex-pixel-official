@@ -8,7 +8,7 @@ import { Stripes } from "./Stripes";
  */
 export function Footer() {
   return (
-    <footer className="tone-dark border-t border-white/10">
+    <footer className="tone-dark no-orbs border-t border-white/10">
       <div className="container-apx pb-10 pt-14">
         <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
           <div>
