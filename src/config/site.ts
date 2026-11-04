@@ -13,7 +13,7 @@ export const site = {
   address:
     "Plot - 1A, 3F, Sadayandi Nayakar Street, RG Nagar, Medavakkam, Chennai - 600100, Tamil Nadu",
   // Paste the booking page link here, for example https://cal.com/your-name/15min
-  bookingUrl: "",
+  bookingUrl: "https://cal.com/apex-pixels-zktvzc/15min",
   // Web3Forms access key. Prefer setting VITE_WEB3FORMS_KEY in a .env file; this is the fallback.
   formKey: "",
   siteUrl: "https://www.theapexpixels.com", // Live domain. Update here, in public/sitemap.xml and in public/robots.txt if it ever changes.
