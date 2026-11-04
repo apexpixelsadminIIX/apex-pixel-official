@@ -4,11 +4,19 @@ import { Check } from "lucide-react";
 
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { ContactTrio } from "@/components/site/ContactTrio";
-import { PackageCard, PricingGrid } from "@/components/site/PricingGrid";
+import { PackageCard } from "@/components/site/PricingGrid";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import { SmartLink } from "@/components/site/SmartLink";
 import { Stripes } from "@/components/site/Stripes";
-import { carePlans, discoveryNote, extras, packages, serviceSections } from "@/config/site";
+import {
+  carePlans,
+  discoveryNote,
+  extras,
+  packages,
+  priceNote,
+  serviceSections,
+  steps,
+} from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/services")({
@@ -25,38 +33,49 @@ export const Route = createFileRoute("/services")({
 function ServicesPage() {
   return (
     <main id="main">
-      <Header />
+      <Overview />
       <WebsitesSection />
-      <SoftwareSection />
-      <ContentSection />
-      <AfterLaunch />
-      <ExtrasSection />
-      <PricingSection />
+      <AppsSection />
+      <SupportSection />
+      <ProcessSection />
       <FinalTrio />
     </main>
   );
 }
 
-function PageHeader({ title, sub }: { title: string; sub?: string }) {
+/* Header + at-a-glance overview (light) */
+
+function Overview() {
   return (
     <header className="tone-light section-pad pb-14 pt-36 md:pb-16 md:pt-44">
       <div className="container-apx">
         <Reveal>
           <Stripes count={6} itemClassName="h-2.5 w-9" />
-          <h1 className="mt-6">{title}</h1>
-          {sub && <p className="muted mt-4 max-w-2xl">{sub}</p>}
+          <h1 className="mt-6">What Apex Pixels builds</h1>
+          <p className="muted mt-4 max-w-2xl">
+            Websites, web apps and business software, plus a smaller content service. Pick the
+            package closest to your project and jump straight to it.
+          </p>
         </Reveal>
+        <Stagger className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {packages.map((pkg) => (
+            <StaggerItem key={pkg.id} className="h-full">
+              <a
+                href={pkg.group === "small" ? "#websites" : "#apps"}
+                className="card-lift block h-full rounded-2xl border border-ink/10 bg-white p-4 hover:border-orange/40"
+              >
+                <p className="text-xs font-semibold uppercase tracking-widest text-on-light-muted">
+                  {pkg.name}
+                </p>
+                <p className="mt-2 font-display text-2xl font-bold text-orange">{pkg.price}</p>
+                <p className="mt-1 text-xs text-on-light-muted">{pkg.timeline}</p>
+              </a>
+            </StaggerItem>
+          ))}
+        </Stagger>
+        <p className="muted mt-5 text-xs">{priceNote}</p>
       </div>
     </header>
-  );
-}
-
-function Header() {
-  return (
-    <PageHeader
-      title="What Apex Pixels builds"
-      sub="Websites, web apps and business software, plus a smaller content service."
-    />
   );
 }
 
@@ -101,51 +120,22 @@ function GoodFor({ text, tone }: { text: string; tone: "dark" | "light" }) {
   );
 }
 
-/* #websites (light) */
+/* Websites tier (dark) */
 
 function WebsitesSection() {
   const websites = serviceSections.find((s) => s.id === "websites");
-  const websitePackages = packages.filter((p) =>
-    ["launch", "business", "professional"].includes(p.id),
-  );
-  const professional = packages.find((p) => p.id === "professional");
-  const optionA = (professional?.features[0] ?? "").replace(/^Option A:\s*/, "");
-  const optionB = (professional?.features[1] ?? "").replace(/^Option B:\s*/, "");
+  const list = packages.filter((p) => ["launch", "business", "professional"].includes(p.id));
 
   return (
-    <section id="websites" className="tone-light section-pad scroll-mt-28">
+    <section id="websites" className="tone-dark section-pad scroll-mt-28">
       <div className="container-apx">
         <Reveal>
           <h2 className="font-display text-3xl font-bold tracking-tight">{websites?.title}</h2>
           <p className="muted mt-4 max-w-2xl">{websites?.description}</p>
-          <GoodFor text={websites?.goodFor ?? ""} tone="light" />
+          <GoodFor text={websites?.goodFor ?? ""} tone="dark" />
         </Reveal>
-        <h3 className="mt-10 font-display text-lg font-semibold">Typical features</h3>
-        <CheckList items={websites?.items ?? []} tone="light" />
-        <div className="mt-8">
-          <ButtonLink href="/contact" size="sm">
-            Send an enquiry
-          </ButtonLink>
-        </div>
-
-        <Stagger className="mt-12 grid gap-4 md:grid-cols-2">
-          {[
-            { label: "Option A", text: optionA },
-            { label: "Option B", text: optionB },
-          ].map((option) => (
-            <StaggerItem key={option.label} className="h-full">
-              <div className="card-lift h-full rounded-2xl border border-ink/10 bg-white p-5 hover:border-orange/40">
-                <p className="text-xs font-bold uppercase tracking-widest text-orange">
-                  {option.label}
-                </p>
-                <p className="muted mt-2 text-sm">{option.text}</p>
-              </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
-
-        <Stagger className="mt-6 grid gap-4 lg:grid-cols-3">
-          {websitePackages.map((pkg) => (
+        <Stagger className="mt-10 grid gap-4 lg:grid-cols-3">
+          {list.map((pkg) => (
             <StaggerItem key={pkg.id} className="h-full">
               <PackageCard pkg={pkg} showFeatures />
             </StaggerItem>
@@ -156,40 +146,33 @@ function WebsitesSection() {
   );
 }
 
-/* #software (dark) */
+/* Apps and software tier (light) */
 
-function SoftwareSection() {
+function AppsSection() {
   const software = serviceSections.find((s) => s.id === "software");
-  const softwarePackages = packages.filter((p) => ["webapp", "suite"].includes(p.id));
+  const list = packages.filter((p) => ["webapp", "suite"].includes(p.id));
 
   return (
-    <section id="software" className="tone-dark section-pad scroll-mt-28">
+    <section id="apps" className="tone-light section-pad scroll-mt-28">
       <div className="container-apx">
         <Reveal>
           <h2 className="font-display text-3xl font-bold tracking-tight">{software?.title}</h2>
           <p className="muted mt-4 max-w-2xl">{software?.description}</p>
-          <GoodFor text={software?.goodFor ?? ""} tone="dark" />
+          <GoodFor text={software?.goodFor ?? ""} tone="light" />
         </Reveal>
-        <h3 className="mt-10 font-display text-lg font-semibold">Typical features</h3>
-        <CheckList items={software?.items ?? []} tone="dark" />
-        <div className="mt-8">
-          <ButtonLink href="/contact" size="sm">
-            Send an enquiry
-          </ButtonLink>
-        </div>
-
-        <div className="card-dark mt-10 max-w-3xl border-orange/25 p-6">
-          <h3 className="font-display text-lg font-semibold text-orange">
-            How the paid discovery step works
-          </h3>
-          <p className="muted mt-3 text-sm">
-            {discoveryNote.text} ({discoveryNote.amounts}.)
-          </p>
-          <p className="muted mt-2 text-sm">{discoveryNote.payment}</p>
-        </div>
-
+        <Reveal>
+          <div className="mt-8 max-w-3xl rounded-2xl border border-orange/30 bg-orange/5 p-6">
+            <h3 className="font-display text-lg font-semibold text-orange">
+              How the paid discovery step works
+            </h3>
+            <p className="muted mt-3 text-sm">
+              {discoveryNote.text} ({discoveryNote.amounts}.)
+            </p>
+            <p className="muted mt-2 text-sm">{discoveryNote.payment}</p>
+          </div>
+        </Reveal>
         <Stagger className="mt-6 grid gap-4 md:grid-cols-2">
-          {softwarePackages.map((pkg) => (
+          {list.map((pkg) => (
             <StaggerItem key={pkg.id} className="h-full">
               <PackageCard pkg={pkg} showFeatures />
             </StaggerItem>
@@ -200,45 +183,16 @@ function SoftwareSection() {
   );
 }
 
-/* #content (light, visibly smaller and lighter) */
+/* Support, extras and content (dark) */
 
-function ContentSection() {
+function SupportSection() {
   const content = serviceSections.find((s) => s.id === "content");
 
   return (
-    <section id="content" className="tone-light scroll-mt-28 py-16 md:py-20">
+    <section id="content" className="tone-dark section-pad scroll-mt-28">
       <div className="container-apx">
         <Reveal>
-          <div className="card-light max-w-2xl p-6 md:p-8">
-            <span className="rounded-full border border-green/30 bg-green/10 px-3 py-1 text-xs font-semibold text-green-ax">
-              Also offered
-            </span>
-            <h2 className="mt-3 font-display text-2xl font-bold tracking-tight">
-              {content?.title}
-            </h2>
-            <p className="muted mt-3 text-sm">{content?.description}</p>
-            <CheckList items={content?.items ?? []} tone="light" columns={1} />
-            <div className="mt-5 flex flex-wrap items-center gap-4">
-              <span className="text-sm font-semibold text-orange">{content?.note}</span>
-              <ButtonLink href="/contact" variant="outline-light" size="sm">
-                Ask about content
-              </ButtonLink>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* After launch (dark) */
-
-function AfterLaunch() {
-  return (
-    <section className="tone-dark section-pad">
-      <div className="container-apx">
-        <Reveal>
-          <h2>After launch</h2>
+          <h2>Support and add-ons</h2>
           <p className="muted mt-4 max-w-2xl">
             Every launch is followed by a period of free bug fixes. After that, a care plan keeps
             the site or app healthy.
@@ -258,53 +212,65 @@ function AfterLaunch() {
             </StaggerItem>
           ))}
         </Stagger>
+
+        <div className="mt-6 grid gap-4 lg:grid-cols-2">
+          <Reveal>
+            <div className="card-dark h-full p-6">
+              <h3 className="font-display text-xl font-semibold">Extras</h3>
+              <table className="mt-4 w-full text-sm">
+                <tbody className="divide-y divide-white/10">
+                  {extras.map((extra) => (
+                    <tr key={extra.name}>
+                      <td className="py-3 pr-4 font-medium">{extra.name}</td>
+                      <td className="py-3 text-right text-on-dark-muted">{extra.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="card-dark h-full p-6">
+              <span className="rounded-full border border-green/30 bg-green/10 px-3 py-1 text-xs font-semibold text-green-ax">
+                Also offered
+              </span>
+              <h3 className="mt-3 font-display text-xl font-semibold">{content?.title}</h3>
+              <p className="muted mt-3 text-sm">{content?.description}</p>
+              <CheckList items={content?.items ?? []} tone="dark" columns={1} />
+              <div className="mt-5 flex flex-wrap items-center gap-4">
+                <span className="text-sm font-semibold text-orange">{content?.note}</span>
+                <ButtonLink href="/contact" variant="outline-dark" size="sm">
+                  Ask about content
+                </ButtonLink>
+              </div>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
 }
 
-/* Extras (light) */
+/* How a project runs (light) */
 
-function ExtrasSection() {
+function ProcessSection() {
   return (
     <section className="tone-light section-pad">
       <div className="container-apx">
         <Reveal>
-          <h2 className="font-display text-3xl font-bold tracking-tight">Extras</h2>
-          <div className="mt-8 max-w-3xl overflow-hidden rounded-2xl border border-ink/10 bg-white">
-            <table className="w-full text-sm">
-              <tbody className="divide-y divide-ink/10">
-                {extras.map((extra) => (
-                  <tr key={extra.name}>
-                    <td className="px-5 py-3.5 font-medium">{extra.name}</td>
-                    <td className="px-5 py-3.5 text-right text-on-light-muted">{extra.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <h2 className="font-display text-3xl font-bold tracking-tight">How a project runs</h2>
         </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* Pricing (dark) + final trio */
-
-function PricingSection() {
-  return (
-    <section className="tone-dark section-pad">
-      <div className="container-apx">
-        <Reveal>
-          <h2>Clear starting prices</h2>
-        </Reveal>
-        <PricingGrid showFeatures />
-        <SmartLink
-          href="/contact"
-          className="link-underline mt-6 inline-flex text-sm font-medium text-on-dark-muted transition-colors hover:text-orange"
-        >
-          Not sure which package fits? Describe your project
-        </SmartLink>
+        <Stagger className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {steps.map((step) => (
+            <StaggerItem key={step.number} className="h-full">
+              <div className="h-full rounded-2xl border border-ink/10 bg-white p-6">
+                <p className="font-display text-sm font-bold text-orange">{step.number}</p>
+                <h3 className="mt-2 font-display text-lg font-semibold">{step.title}</h3>
+                <p className="muted mt-2 text-sm">{step.text}</p>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
       </div>
     </section>
   );
@@ -312,7 +278,7 @@ function PricingSection() {
 
 function FinalTrio() {
   return (
-    <section className="tone-dark no-orbs pb-20">
+    <section className="tone-dark no-orbs pb-20 pt-16">
       <div className="container-apx">
         <Reveal>
           <ContactTrio tone="dark" />
