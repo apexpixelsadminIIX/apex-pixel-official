@@ -332,22 +332,35 @@
    transparent at the box edge (closest-side), so no rectangle or seam is ever
    visible, however the orb moves or scales. The box is sized as a share of its
    section (tall sections get bigger orbs) and always stays inside the section,
-   so nothing is cut off at a section boundary. Only transform animates, and
-   the orbs stay still when the visitor prefers reduced motion. */
+   so nothing is cut off at a section boundary.
+   Every section uses one of six layouts (positions, drift directions and start
+   phases), chosen by its position among its siblings, so the movement looks
+   random. In each layout the two orbs sit apart and drift so they never close
+   in on each other. A few sections swap one orb to the brand green. Only
+   transform animates, and the orbs stay still when the visitor prefers
+   reduced motion. */
 .tone-dark,
 .tone-light {
   position: relative;
   isolation: isolate;
   overflow: clip;
-  --orb-a-left: -14%;
-  --orb-b-left: 36%;
+  --orb-a-c: 252 100 28;
+  --orb-b-c: 60 70 230;
+  --a-left: -14%;
+  --a-top: 12%;
+  --a-dx: -7%;
+  --a-dy: 6%;
+  --a-s: 1.08;
+  --a-delay: 0s;
+  --b-left: 36%;
+  --b-top: 16%;
+  --b-dx: 7%;
+  --b-dy: -6%;
+  --b-s: 0.95;
+  --b-delay: -9s;
 }
-
-/* Alternate sections mirror the orbs so neighbouring sections do not match. */
-.tone-dark:nth-child(even),
-.tone-light:nth-child(even) {
-  --orb-a-left: 34%;
-  --orb-b-left: -18%;
+.tone-light {
+  --orb-b-c: 40 50 200;
 }
 
 .tone-dark::before,
@@ -363,62 +376,198 @@
 
 .tone-dark::before,
 .tone-light::before {
-  left: var(--orb-a-left);
-  top: 12%;
+  left: var(--a-left);
+  top: var(--a-top);
   width: max(82%, 440px);
   height: 74%;
-  animation: orb-drift-a 36s ease-in-out infinite alternate;
+  animation: orb-drift-a 36s ease-in-out var(--a-delay) infinite alternate;
 }
 .tone-dark::after,
 .tone-light::after {
-  left: var(--orb-b-left);
-  top: 16%;
+  left: var(--b-left);
+  top: var(--b-top);
   width: max(86%, 460px);
   height: 70%;
-  animation: orb-drift-b 46s ease-in-out infinite alternate;
+  animation: orb-drift-b 46s ease-in-out var(--b-delay) infinite alternate;
 }
 
 .tone-dark::before {
   background: radial-gradient(
     closest-side,
-    rgb(252 100 28 / 15%) 0%,
-    rgb(252 100 28 / 11%) 18%,
-    rgb(252 100 28 / 6.5%) 38%,
-    rgb(252 100 28 / 2.8%) 60%,
-    rgb(252 100 28 / 0.8%) 82%,
+    rgb(var(--orb-a-c) / 15%) 0%,
+    rgb(var(--orb-a-c) / 11%) 18%,
+    rgb(var(--orb-a-c) / 6.5%) 38%,
+    rgb(var(--orb-a-c) / 2.8%) 60%,
+    rgb(var(--orb-a-c) / 0.8%) 82%,
     transparent 100%
   );
 }
 .tone-dark::after {
   background: radial-gradient(
     closest-side,
-    rgb(60 70 230 / 21%) 0%,
-    rgb(60 70 230 / 15%) 18%,
-    rgb(60 70 230 / 9%) 38%,
-    rgb(60 70 230 / 3.8%) 60%,
-    rgb(60 70 230 / 1%) 82%,
+    rgb(var(--orb-b-c) / 21%) 0%,
+    rgb(var(--orb-b-c) / 15%) 18%,
+    rgb(var(--orb-b-c) / 9%) 38%,
+    rgb(var(--orb-b-c) / 3.8%) 60%,
+    rgb(var(--orb-b-c) / 1%) 82%,
     transparent 100%
   );
 }
 .tone-light::before {
   background: radial-gradient(
     closest-side,
-    rgb(252 100 28 / 10%) 0%,
-    rgb(252 100 28 / 7%) 18%,
-    rgb(252 100 28 / 4%) 38%,
-    rgb(252 100 28 / 1.7%) 60%,
-    rgb(252 100 28 / 0.5%) 82%,
+    rgb(var(--orb-a-c) / 10%) 0%,
+    rgb(var(--orb-a-c) / 7%) 18%,
+    rgb(var(--orb-a-c) / 4%) 38%,
+    rgb(var(--orb-a-c) / 1.7%) 60%,
+    rgb(var(--orb-a-c) / 0.5%) 82%,
     transparent 100%
   );
 }
 .tone-light::after {
   background: radial-gradient(
     closest-side,
-    rgb(40 50 200 / 8%) 0%,
-    rgb(40 50 200 / 5.5%) 18%,
-    rgb(40 50 200 / 3.2%) 38%,
-    rgb(40 50 200 / 1.4%) 60%,
-    rgb(40 50 200 / 0.4%) 82%,
+    rgb(var(--orb-b-c) / 8%) 0%,
+    rgb(var(--orb-b-c) / 5.5%) 18%,
+    rgb(var(--orb-b-c) / 3.2%) 38%,
+    rgb(var(--orb-b-c) / 1.4%) 60%,
+    rgb(var(--orb-b-c) / 0.4%) 82%,
+    transparent 100%
+  );
+}
+
+/* Six layouts. Orbs start on opposite sides and drift so that the gap between
+   their centres never drops below roughly a third of the section width. */
+.tone-dark:nth-child(6n+1),
+.tone-light:nth-child(6n+1) {
+  --a-left: -14%;
+  --a-top: 12%;
+  --a-dx: -7%;
+  --a-dy: 6%;
+  --a-s: 1.08;
+  --a-delay: 0s;
+  --b-left: 36%;
+  --b-top: 16%;
+  --b-dx: 7%;
+  --b-dy: -6%;
+  --b-s: 0.95;
+  --b-delay: -9s;
+}
+.tone-dark:nth-child(6n+2),
+.tone-light:nth-child(6n+2) {
+  --a-left: 34%;
+  --a-top: 8%;
+  --a-dx: 7%;
+  --a-dy: -7%;
+  --a-s: 1.06;
+  --a-delay: -14s;
+  --b-left: -18%;
+  --b-top: 20%;
+  --b-dx: -7%;
+  --b-dy: 7%;
+  --b-s: 0.96;
+  --b-delay: -21s;
+}
+.tone-dark:nth-child(6n+3),
+.tone-light:nth-child(6n+3) {
+  --a-left: -10%;
+  --a-top: 6%;
+  --a-dx: 6%;
+  --a-dy: -8%;
+  --a-s: 1.1;
+  --a-delay: -22s;
+  --b-left: 38%;
+  --b-top: 24%;
+  --b-dx: -3%;
+  --b-dy: 8%;
+  --b-s: 0.94;
+  --b-delay: -4s;
+}
+.tone-dark:nth-child(6n+4),
+.tone-light:nth-child(6n+4) {
+  --a-left: 34%;
+  --a-top: 14%;
+  --a-dx: -3%;
+  --a-dy: 8%;
+  --a-s: 1.05;
+  --a-delay: -6s;
+  --b-left: -16%;
+  --b-top: 18%;
+  --b-dx: 4%;
+  --b-dy: -8%;
+  --b-s: 1.0;
+  --b-delay: -30s;
+}
+.tone-dark:nth-child(6n+5),
+.tone-light:nth-child(6n+5) {
+  --a-left: 0%;
+  --a-top: 4%;
+  --a-dx: -8%;
+  --a-dy: 5%;
+  --a-s: 1.08;
+  --a-delay: -18s;
+  --b-left: 40%;
+  --b-top: 26%;
+  --b-dx: 2%;
+  --b-dy: -8%;
+  --b-s: 0.95;
+  --b-delay: -12s;
+}
+.tone-dark:nth-child(6n),
+.tone-light:nth-child(6n) {
+  --a-left: -6%;
+  --a-top: 16%;
+  --a-dx: -5%;
+  --a-dy: -8%;
+  --a-s: 1.04;
+  --a-delay: -28s;
+  --b-left: 30%;
+  --b-top: 10%;
+  --b-dx: 5%;
+  --b-dy: 8%;
+  --b-s: 1.06;
+  --b-delay: -17s;
+}
+
+/* A few sections trade one orb for the brand green. */
+.tone-dark:nth-child(7n + 4),
+.tone-light:nth-child(7n + 4) {
+  --orb-b-c: 24 160 40;
+}
+.tone-dark:nth-child(11n + 7),
+.tone-light:nth-child(11n + 7) {
+  --orb-a-c: 24 160 40;
+}
+.tone-light:nth-child(7n + 4) {
+  --orb-b-c: 16 140 24;
+}
+.tone-light:nth-child(11n + 7) {
+  --orb-a-c: 16 140 24;
+}
+
+/* Green orbs read dimmer than orange or blue at the same strength, so they
+   get a slightly stronger fall-off. */
+.tone-dark:nth-child(7n + 4)::after,
+.tone-dark:nth-child(11n + 7)::before {
+  background: radial-gradient(
+    closest-side,
+    rgb(24 160 40 / 30%) 0%,
+    rgb(24 160 40 / 22%) 18%,
+    rgb(24 160 40 / 13%) 38%,
+    rgb(24 160 40 / 5.5%) 60%,
+    rgb(24 160 40 / 1.4%) 82%,
+    transparent 100%
+  );
+}
+.tone-light:nth-child(7n + 4)::after,
+.tone-light:nth-child(11n + 7)::before {
+  background: radial-gradient(
+    closest-side,
+    rgb(16 140 24 / 13%) 0%,
+    rgb(16 140 24 / 9%) 18%,
+    rgb(16 140 24 / 5.5%) 38%,
+    rgb(16 140 24 / 2.4%) 60%,
+    rgb(16 140 24 / 0.7%) 82%,
     transparent 100%
   );
 }
@@ -428,7 +577,7 @@
     transform: translate3d(0, 0, 0) scale(1);
   }
   to {
-    transform: translate3d(7%, 6%, 0) scale(1.08);
+    transform: translate3d(var(--a-dx), var(--a-dy), 0) scale(var(--a-s));
   }
 }
 @keyframes orb-drift-b {
@@ -436,7 +585,7 @@
     transform: translate3d(0, 0, 0) scale(1.04);
   }
   to {
-    transform: translate3d(-7%, -6%, 0) scale(0.95);
+    transform: translate3d(var(--b-dx), var(--b-dy), 0) scale(var(--b-s));
   }
 }
 
