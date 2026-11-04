@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://example.com/</loc></url>
-  <url><loc>https://example.com/services</loc></url>
-  <url><loc>https://example.com/work</loc></url>
-  <url><loc>https://example.com/work/excel-packaging</loc></url>
-  <url><loc>https://example.com/about</loc></url>
-  <url><loc>https://example.com/contact</loc></url>
-  <url><loc>https://example.com/privacy</loc></url>
-  <url><loc>https://example.com/terms</loc></url>
+  <url><loc>https://www.theapexpixels.com/</loc></url>
+  <url><loc>https://www.theapexpixels.com/services</loc></url>
+  <url><loc>https://www.theapexpixels.com/work</loc></url>
+  <url><loc>https://www.theapexpixels.com/work/excel-packaging</loc></url>
+  <url><loc>https://www.theapexpixels.com/about</loc></url>
+  <url><loc>https://www.theapexpixels.com/contact</loc></url>
+  <url><loc>https://www.theapexpixels.com/privacy</loc></url>
+  <url><loc>https://www.theapexpixels.com/terms</loc></url>
 </urlset>

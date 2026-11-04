@@ -16,7 +16,7 @@ export const site = {
   bookingUrl: "",
   // Web3Forms access key. Prefer setting VITE_WEB3FORMS_KEY in a .env file; this is the fallback.
   formKey: "",
-  siteUrl: "https://example.com", // Placeholder until the domain is bought.
+  siteUrl: "https://www.theapexpixels.com", // Live domain. Update here, in public/sitemap.xml and in public/robots.txt if it ever changes.
   location: "Chennai, Tamil Nadu",
   footerLine: "© 2026 Apex Pixels. Chennai, Tamil Nadu.",
 } as const;

@@ -36,4 +36,4 @@ This project builds with Nitro for Cloudflare, so it deploys as a Cloudflare Wor
 2. In the Cloudflare dashboard open Workers and Pages, create an application and import the GitHub repository.
 3. Build command: `npm run build`. Deploy command: `npx wrangler deploy` (the build writes its Cloudflare config to `.output/server/wrangler.json`).
 4. Under Variables, add `VITE_WEB3FORMS_KEY` (it must be set at build time, so add it before the first build).
-5. When the domain is bought: attach it in Cloudflare, then update `siteUrl` in `src/config/site.ts` and replace `https://example.com` in `public/sitemap.xml` and `public/robots.txt`.
+5. The domain is https://www.theapexpixels.com. Attach it to the Worker in Cloudflare. If it ever changes, update `siteUrl` in `src/config/site.ts` and the address in `public/sitemap.xml` and `public/robots.txt`.
