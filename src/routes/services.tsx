@@ -46,11 +46,11 @@ function ServicesPage() {
 /* Header + at-a-glance overview (light) */
 
 const packageMeaning: Record<string, string> = {
-  launch: "A small site to get online fast",
-  business: "A fuller site that brings in enquiries",
-  professional: "A larger site or online store",
-  webapp: "A custom app with logins and data",
-  suite: "Connected software to run a business",
+  launch: "Be found online in under two weeks, without the hassle.",
+  business: "Turn visitors into enquiries that land straight in your inbox.",
+  professional: "Show your full range, or sell it online around the clock.",
+  webapp: "Replace spreadsheets and WhatsApp chaos with your own app.",
+  suite: "Run your whole business from one connected system.",
 };
 
 function Overview() {
@@ -75,7 +75,8 @@ function Overview() {
                 <p className="text-xs font-semibold uppercase tracking-widest text-on-light-muted">
                   {pkg.name}
                 </p>
-                <p className="mt-2 text-sm font-medium">{packageMeaning[pkg.id]}</p>
+                <p className="mt-2 text-sm font-medium leading-snug">{packageMeaning[pkg.id]}</p>
+                <p className="mt-3 text-xs font-semibold text-orange">See what's included ↓</p>
               </a>
             </StaggerItem>
           ))}
