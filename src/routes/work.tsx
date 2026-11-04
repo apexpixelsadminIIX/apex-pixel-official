@@ -40,7 +40,7 @@ function WorkPage() {
             {workItems.map((item) => (
               <StaggerItem key={item.id} className="h-full">
                 <article className="card-dark card-lift flex h-full flex-col p-6">
-                  <BrowserFrame label={item.name} />
+                  <BrowserFrame label={item.name} src={item.image} fallback="Screenshot coming soon" />
                   <h2 className="mt-5 font-display text-xl font-semibold">{item.name}</h2>
                   <p className="muted mt-2 text-sm">{item.text}</p>
                   <div className="mt-6 flex flex-1 flex-wrap items-end gap-3">

@@ -3,6 +3,7 @@ import { seo, absoluteUrl } from "@/lib/seo";
 import { motion, useMotionValue, useScroll, useSpring } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
+import { Testimonials } from "@/components/site/Testimonials";
 import { BrowserFrame } from "@/components/site/BrowserFrame";
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { ContactTrio } from "@/components/site/ContactTrio";
@@ -78,6 +79,7 @@ function Index() {
       <RecentWork />
       <HowAProjectWorks />
       <StartingPrices />
+      <Testimonials />
       <WhyLion />
       <Questions />
       <FinalCta />
@@ -307,7 +309,7 @@ function RecentWork() {
           {workItems.map((item) => (
             <StaggerItem key={item.id} className="h-full">
               <article className="card-dark card-lift flex h-full flex-col p-6">
-                <BrowserFrame label={item.name} />
+                <BrowserFrame label={item.name} src={item.image} fallback="Screenshot coming soon" />
                 <h3 className="mt-5 font-display text-xl font-semibold">{item.name}</h3>
                 <p className="muted mt-2 text-sm">{item.text}</p>
                 <div className="mt-5 flex flex-wrap items-center gap-3">

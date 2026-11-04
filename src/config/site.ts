@@ -268,6 +268,7 @@ export const workItems = [
     href: "/work/excel-packaging",
     status: "live-case-study" as const,
     buttonLabel: "Read the case study",
+    image: "/work/excel-packaging-1.jpg",
   },
   {
     id: "hospitality-critic",
@@ -276,8 +277,21 @@ export const workItems = [
     href: "https://hospitalitycriticsolutions.com/",
     status: "coming-soon" as const,
     buttonLabel: "Visit the site",
+    image: "/work/hospitality-critic.jpg",
   },
 ];
+
+/* Real client testimonials only. Add one object per testimonial and the Home
+   section shows them. With 4 or fewer they sit in a grid; with more than 4 the
+   section becomes a horizontal carousel automatically. Until enough real ones
+   exist, the grid is padded with "coming soon" cards. */
+export type Testimonial = {
+  quote: string;
+  name: string;
+  role: string; // e.g. "Owner, Excel Packaging and Taste Foods"
+};
+
+export const testimonials: Testimonial[] = [];
 
 export const buildTopics = [
   {
