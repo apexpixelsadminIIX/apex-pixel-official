@@ -353,7 +353,7 @@ function ContactPage() {
                           <SelectContent>
                             {packages.map((pkg) => (
                               <SelectItem key={pkg.id} value={pkg.id}>
-                                {pkg.name} — {pkg.price}
+                                {pkg.name}
                               </SelectItem>
                             ))}
                             <SelectItem value="unsure">Not sure yet</SelectItem>
