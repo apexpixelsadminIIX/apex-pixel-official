@@ -327,15 +327,31 @@
 }
 
 /* ---- Soft gradient orbs ----
-   Two very faint, slowly drifting orbs behind the content of every dark and
-   light section. They sit behind the content (negative z-index inside an
-   isolated stacking context), only animate transform, and stay still when the
-   visitor prefers reduced motion. */
+   Two very faint orbs drift slowly behind the content of each dark and light
+   section. Each orb layer fills its section, is sized as a share of that
+   section (so tall sections get bigger orbs), falls off smoothly to nothing,
+   and is masked to fade out before the top and bottom edges. Nothing is ever
+   cut off at a section boundary, so neighbouring sections never show a seam.
+   Only transform animates, and the orbs stay still when the visitor prefers
+   reduced motion. */
 .tone-dark,
 .tone-light {
   position: relative;
   isolation: isolate;
   overflow: clip;
+  --orb-a-x: 14%;
+  --orb-a-y: 32%;
+  --orb-b-x: 86%;
+  --orb-b-y: 70%;
+}
+
+/* Alternate sections mirror the orbs so neighbouring sections do not match. */
+.tone-dark:nth-child(even),
+.tone-light:nth-child(even) {
+  --orb-a-x: 86%;
+  --orb-a-y: 26%;
+  --orb-b-x: 14%;
+  --orb-b-y: 74%;
 }
 
 .tone-dark::before,
@@ -344,55 +360,57 @@
 .tone-light::after {
   content: "";
   position: absolute;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
-  width: clamp(320px, 46vw, 640px);
-  aspect-ratio: 1;
-  border-radius: 9999px;
   will-change: transform;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 28%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 28%, #000 72%, transparent 100%);
 }
 
 .tone-dark::before {
-  top: -18%;
-  left: -8%;
-  background: radial-gradient(circle, rgb(252 100 28 / 14%) 0%, transparent 68%);
-  animation: orb-drift-a 24s ease-in-out infinite alternate;
+  background: radial-gradient(
+    ellipse 68% 62% at var(--orb-a-x) var(--orb-a-y),
+    rgb(252 100 28 / 15%) 0%,
+    rgb(252 100 28 / 9%) 30%,
+    rgb(252 100 28 / 3.5%) 60%,
+    rgb(252 100 28 / 0.8%) 85%,
+    transparent 100%
+  );
+  animation: orb-drift-a 32s ease-in-out infinite alternate;
 }
 .tone-dark::after {
-  bottom: -22%;
-  right: -6%;
-  background: radial-gradient(circle, rgb(60 70 230 / 20%) 0%, transparent 68%);
-  animation: orb-drift-b 30s ease-in-out infinite alternate;
+  background: radial-gradient(
+    ellipse 72% 66% at var(--orb-b-x) var(--orb-b-y),
+    rgb(60 70 230 / 21%) 0%,
+    rgb(60 70 230 / 12%) 30%,
+    rgb(60 70 230 / 4.5%) 60%,
+    rgb(60 70 230 / 1%) 85%,
+    transparent 100%
+  );
+  animation: orb-drift-b 40s ease-in-out infinite alternate;
 }
 .tone-light::before {
-  top: -20%;
-  right: -8%;
-  background: radial-gradient(circle, rgb(252 100 28 / 9%) 0%, transparent 68%);
-  animation: orb-drift-a 26s ease-in-out infinite alternate;
+  background: radial-gradient(
+    ellipse 68% 62% at var(--orb-a-x) var(--orb-a-y),
+    rgb(252 100 28 / 10%) 0%,
+    rgb(252 100 28 / 6%) 30%,
+    rgb(252 100 28 / 2.2%) 60%,
+    rgb(252 100 28 / 0.5%) 85%,
+    transparent 100%
+  );
+  animation: orb-drift-a 34s ease-in-out infinite alternate;
 }
 .tone-light::after {
-  bottom: -24%;
-  left: -6%;
-  background: radial-gradient(circle, rgb(40 50 200 / 7%) 0%, transparent 68%);
-  animation: orb-drift-b 32s ease-in-out infinite alternate;
-}
-
-/* Alternate sections mirror the orbs so neighbouring sections do not match. */
-.tone-dark:nth-child(even)::before {
-  left: auto;
-  right: -8%;
-}
-.tone-dark:nth-child(even)::after {
-  right: auto;
-  left: -6%;
-}
-.tone-light:nth-child(even)::before {
-  right: auto;
-  left: -8%;
-}
-.tone-light:nth-child(even)::after {
-  left: auto;
-  right: -6%;
+  background: radial-gradient(
+    ellipse 72% 66% at var(--orb-b-x) var(--orb-b-y),
+    rgb(40 50 200 / 8%) 0%,
+    rgb(40 50 200 / 5%) 30%,
+    rgb(40 50 200 / 1.8%) 60%,
+    rgb(40 50 200 / 0.4%) 85%,
+    transparent 100%
+  );
+  animation: orb-drift-b 42s ease-in-out infinite alternate;
 }
 
 @keyframes orb-drift-a {
@@ -400,15 +418,15 @@
     transform: translate3d(0, 0, 0) scale(1);
   }
   to {
-    transform: translate3d(70px, 50px, 0) scale(1.14);
+    transform: translate3d(5%, 4%, 0) scale(1.08);
   }
 }
 @keyframes orb-drift-b {
   from {
-    transform: translate3d(0, 0, 0) scale(1.08);
+    transform: translate3d(0, 0, 0) scale(1.05);
   }
   to {
-    transform: translate3d(-60px, -46px, 0) scale(0.94);
+    transform: translate3d(-5%, -4%, 0) scale(0.96);
   }
 }
 
