@@ -45,6 +45,14 @@ function ServicesPage() {
 
 /* Header + at-a-glance overview (light) */
 
+const packageMeaning: Record<string, string> = {
+  launch: "A small site to get online fast",
+  business: "A fuller site that brings in enquiries",
+  professional: "A larger site or online store",
+  webapp: "A custom app with logins and data",
+  suite: "Connected software to run a business",
+};
+
 function Overview() {
   return (
     <header className="tone-light section-pad pb-14 pt-36 md:pb-16 md:pt-44">
@@ -67,13 +75,11 @@ function Overview() {
                 <p className="text-xs font-semibold uppercase tracking-widest text-on-light-muted">
                   {pkg.name}
                 </p>
-                <p className="mt-2 font-display text-2xl font-bold text-orange">{pkg.price}</p>
-                <p className="mt-1 text-xs text-on-light-muted">{pkg.timeline}</p>
+                <p className="mt-2 text-sm font-medium">{packageMeaning[pkg.id]}</p>
               </a>
             </StaggerItem>
           ))}
         </Stagger>
-        <p className="muted mt-5 text-xs">{priceNote}</p>
       </div>
     </header>
   );
@@ -178,6 +184,7 @@ function AppsSection() {
             </StaggerItem>
           ))}
         </Stagger>
+        <p className="muted mt-6 max-w-2xl text-xs">{priceNote}</p>
       </div>
     </section>
   );
