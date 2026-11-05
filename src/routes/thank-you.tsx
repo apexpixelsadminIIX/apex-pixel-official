@@ -51,7 +51,7 @@ function ThankYouPage() {
   useEffect(() => {
     try {
       const saved = sessionStorage.getItem(NAME_KEY);
-      if (saved) setName(saved.trim().split(/\s+/)[0] ?? "");
+      if (saved) setName(saved.trim().replace(/\s+/g, " ").slice(0, 40));
     } catch {
       /* storage can be blocked; the page works without it */
     }
