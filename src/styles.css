@@ -423,11 +423,9 @@
 
 /* Dark-surface card */
 @utility card-dark {
-  background-color: rgb(14 18 54 / 58%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  backdrop-filter: blur(14px) saturate(140%);
+  background-color: var(--ink-2);
   color: var(--on-dark);
-  border: 1px solid rgb(255 255 255 / 10%);
+  border: 1px solid rgb(255 255 255 / 8%);
   border-radius: var(--radius);
 
   & .muted {
