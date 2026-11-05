@@ -27,7 +27,7 @@ export function WhatsAppFab() {
       animate={pulse ? { scale: [1, 1.12, 1, 1.08, 1] } : { scale: 1 }}
       transition={{ duration: 0.9, ease: "easeInOut" }}
       onAnimationComplete={() => setPulse(false)}
-      className="group fixed bottom-5 right-5 z-[65] flex h-13 items-center overflow-hidden rounded-full bg-green text-white shadow-pill transition-all duration-300 hover:pr-5"
+      className="group fixed bottom-5 right-5 z-[65] flex h-13 items-center overflow-hidden rounded-full border border-white/25 bg-green/80 text-white shadow-pill backdrop-blur-md transition-all duration-300 hover:pr-5"
     >
       <span className="grid h-13 w-13 shrink-0 place-items-center">
         <WhatsAppIcon className="h-6 w-6" />

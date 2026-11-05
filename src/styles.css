@@ -105,6 +105,7 @@
   --shadow-glow-orange: 0 8px 40px -8px rgb(252 100 28 / 45%);
   --shadow-glow-orange-strong: 0 12px 48px -6px rgb(252 100 28 / 60%);
   --shadow-lift: 0 18px 40px -18px rgb(6 8 31 / 38%);
+  --shadow-soft-lift: 0 10px 26px -16px rgb(6 8 31 / 26%);
 }
 
 /* ---- Layout ---- */
@@ -166,37 +167,68 @@
   }
 }
 
-/* Cards lift 6px on hover with a deeper shadow, and a thin orange stripe
-   sweeps across the top edge. Transform and opacity only. */
+/* Cards rise 2px on hover with a soft, slow ease and a gentle shadow.
+   Transform and shadow only. */
 @utility card-lift {
   position: relative;
   transition:
-    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.2s ease;
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--orange);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    pointer-events: none;
-  }
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
 
   &:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lift);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft-lift);
   }
+}
 
-  &:hover::after {
-    transform: scaleX(1);
+/* Frosted glass. A see-through tint, a background blur and a soft edge.
+   Falls back to a solid tint where backdrop-filter is unsupported or the
+   visitor asks for reduced transparency. */
+@utility glass-light {
+  background-color: rgb(255 255 255 / 84%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 8px 30px -12px rgb(6 8 31 / 22%), inset 0 1px 0 rgb(255 255 255 / 60%);
+}
+
+@utility glass-dark {
+  background-color: rgb(14 18 54 / 55%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 10px 34px -14px rgb(0 0 0 / 55%), inset 0 1px 0 rgb(255 255 255 / 8%);
+}
+
+/* Popups, menus and dialogs. */
+@utility glass-pop {
+  background-color: rgb(255 255 255 / 82%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-light,
+  .glass-pop {
+    background-color: rgb(255 255 255 / 96%);
+  }
+  .glass-dark,
+  .card-dark {
+    background-color: var(--ink-2);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass-light,
+  .glass-pop {
+    background-color: #ffffff;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .glass-dark,
+  .card-dark {
+    background-color: var(--ink-2);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }
 
@@ -225,9 +257,11 @@
 
 /* Dark-surface card */
 @utility card-dark {
-  background-color: var(--ink-2);
+  background-color: rgb(14 18 54 / 58%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
   color: var(--on-dark);
-  border: 1px solid rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 10%);
   border-radius: var(--radius);
 
   & .muted {

@@ -64,7 +64,7 @@ export function Testimonials() {
                   : ""
               }
             >
-              <figure className="flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6">
+              <figure className="flex h-full flex-col glass-light rounded-2xl border border-ink/10 p-6">
                 <Quote className="h-6 w-6 text-orange" aria-hidden />
                 <blockquote className="muted mt-4 flex-1 text-sm">{t.quote}</blockquote>
                 <figcaption className="mt-5 text-sm">

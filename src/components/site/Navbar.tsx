@@ -10,7 +10,7 @@ import { Stripes } from "./Stripes";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
 /**
- * Floating pill navbar: white, fully rounded, soft shadow, sticky near the
+ * Floating pill navbar: frosted glass, fully rounded, soft shadow, sticky near the
  * top with a small gap. Shrinks slightly on scroll. Mobile opens a
  * full-screen sheet with the links and the three contact actions.
  */
@@ -48,7 +48,7 @@ export function Navbar() {
           animate={{ maxWidth: 1200 }}
           transition={{ duration: 0.25 }}
           className={cn(
-            "mx-auto flex w-full items-center justify-between gap-3 rounded-full border border-ink/5 bg-white pl-4 pr-2 shadow-pill transition-all duration-300",
+            "mx-auto flex w-full items-center justify-between gap-3 glass-light rounded-full border border-white/50 pl-4 pr-2 shadow-pill transition-all duration-300",
             scrolled ? "py-1.5" : "py-2",
           )}
           aria-label="Main navigation"
@@ -63,7 +63,7 @@ export function Navbar() {
               alt={site.name}
               className={cn(
                 "w-auto transition-all duration-300",
-                scrolled ? "h-7" : "h-9",
+                scrolled ? "h-11" : "h-14",
               )}
             />
           </SmartLink>
@@ -109,14 +109,14 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="grid-bg-dark fixed inset-0 z-[70] flex flex-col bg-ink px-6 pb-10 pt-5 text-on-dark"
+            className="grid-bg-dark fixed inset-0 z-[70] flex flex-col bg-ink/75 px-6 pb-10 pt-5 text-on-dark backdrop-blur-xl"
             role="dialog"
             aria-modal="true"
             aria-label="Menu"
           >
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 rounded-2xl bg-white px-4 py-2">
-                <img src="/logo-full.webp" alt={site.name} className="h-8 w-auto" />
+              <div className="flex items-center gap-3 glass-light rounded-2xl px-4 py-2">
+                <img src="/logo-full.webp" alt={site.name} className="h-11 w-auto" />
               </div>
               <button
                 type="button"

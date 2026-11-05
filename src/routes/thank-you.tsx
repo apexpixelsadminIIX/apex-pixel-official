@@ -119,7 +119,7 @@ function ThankYouPage() {
           <Stagger className="mt-10 grid gap-4 md:grid-cols-3">
             {nextSteps.map((step) => (
               <StaggerItem key={step.number} className="h-full">
-                <div className="h-full rounded-2xl border border-ink/10 bg-white p-6">
+                <div className="h-full glass-light rounded-2xl border border-ink/10 p-6">
                   <p className="font-display text-sm font-bold text-orange">{step.number}</p>
                   <h3 className="mt-2 font-display text-lg font-semibold">{step.title}</h3>
                   <p className="muted mt-2 text-sm">{step.text}</p>

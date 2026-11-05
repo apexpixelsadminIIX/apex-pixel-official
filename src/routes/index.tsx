@@ -325,27 +325,30 @@ function HowAProjectWorks() {
               transition={{ duration: 0.5, ease: EASE, delay: i * 0.08 }}
               className="relative flex gap-6"
             >
-              <motion.span
-                initial={{ scale: 0.7, opacity: 0 }}
-                whileInView={{
-                  scale: 1,
-                  opacity: 1,
-                  boxShadow: [
-                    "0 0 0 0 rgba(252, 100, 28, 0)",
-                    "0 0 24px 2px rgba(252, 100, 28, 0.5)",
-                    "0 0 0 0 rgba(252, 100, 28, 0)",
-                  ],
-                }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{
-                  scale: { type: "spring", stiffness: 260, damping: 16 },
-                  opacity: { duration: 0.35 },
-                  boxShadow: { duration: 0.9, times: [0, 0.4, 1], delay: 0.15 },
-                }}
-                className="z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full border-2 border-orange bg-white font-display text-sm font-bold text-orange"
-              >
-                {step.number}
-              </motion.span>
+              <span className="relative z-10 h-14 w-14 shrink-0">
+                {/* One soft ring expands and fades once. It replaces an animated
+                    box-shadow, which painted unevenly around the circle. */}
+                <motion.span
+                  aria-hidden
+                  initial={{ scale: 1, opacity: 0 }}
+                  whileInView={{ scale: [1, 1.7], opacity: [0.45, 0] }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                  className="absolute inset-0 rounded-full bg-orange/40"
+                />
+                <motion.span
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{
+                    scale: { type: "spring", stiffness: 240, damping: 22 },
+                    opacity: { duration: 0.35 },
+                  }}
+                  className="relative grid h-14 w-14 place-items-center rounded-full border-2 border-orange bg-white font-display text-sm font-bold text-orange"
+                >
+                  {step.number}
+                </motion.span>
+              </span>
               <div className="pt-1.5">
                 <h3 className="font-display text-xl font-semibold">{step.title}</h3>
                 <p className="muted mt-2 text-sm">{step.text}</p>

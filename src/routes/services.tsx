@@ -70,7 +70,7 @@ function Overview() {
             <StaggerItem key={pkg.id} className="h-full">
               <a
                 href={["webapp", "suite"].includes(pkg.id) ? "#apps" : "#websites"}
-                className="card-lift block h-full rounded-2xl border border-ink/10 bg-white p-4 hover:border-orange/40"
+                className="card-lift block h-full glass-light rounded-2xl border border-ink/10 p-4 hover:border-orange/40"
               >
                 <p className="text-xs font-semibold uppercase tracking-widest text-on-light-muted">
                   {pkg.name}
@@ -271,7 +271,7 @@ function ProcessSection() {
         <Stagger className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((step) => (
             <StaggerItem key={step.number} className="h-full">
-              <div className="h-full rounded-2xl border border-ink/10 bg-white p-6">
+              <div className="h-full glass-light rounded-2xl border border-ink/10 p-6">
                 <p className="font-display text-sm font-bold text-orange">{step.number}</p>
                 <h3 className="mt-2 font-display text-lg font-semibold">{step.title}</h3>
                 <p className="muted mt-2 text-sm">{step.text}</p>
