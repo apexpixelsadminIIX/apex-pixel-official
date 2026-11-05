@@ -176,9 +176,12 @@ function ThankYouPage() {
                 <article className="card-dark card-lift flex h-full flex-col p-6">
                   <h3 className="font-display text-xl font-semibold">{item.name}</h3>
                   <p className="muted mt-2 text-sm">{item.text}</p>
-                  <div className="mt-5">
+                  <div className="mt-5 flex flex-wrap gap-3">
                     <ButtonLink href={item.href} variant="outline-dark" size="sm">
                       {item.buttonLabel}
+                    </ButtonLink>
+                    <ButtonLink href={item.liveUrl} variant="outline-dark" size="sm">
+                      Visit the live site
                     </ButtonLink>
                   </div>
                 </article>

@@ -199,6 +199,24 @@
   box-shadow: 0 10px 34px -14px rgb(0 0 0 / 55%), inset 0 1px 0 rgb(255 255 255 / 8%);
 }
 
+/* Hand-made frosted glass for the navbar: a thin, mostly clear pane with a
+   strong blur, a fine grain, a soft light sheen and a bright rim, so the page
+   behind shows through. */
+@utility glass-frost {
+  background-color: rgb(255 255 255 / 46%);
+  background-image:
+    linear-gradient(135deg, rgb(255 255 255 / 38%) 0%, rgb(255 255 255 / 6%) 42%, rgb(255 255 255 / 20%) 100%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-blend-mode: normal, soft-light;
+  -webkit-backdrop-filter: blur(30px) saturate(190%) brightness(1.12) contrast(0.96);
+  backdrop-filter: blur(30px) saturate(190%) brightness(1.12) contrast(0.96);
+  box-shadow:
+    0 10px 34px -14px rgb(6 8 31 / 45%),
+    inset 0 1px 1px rgb(255 255 255 / 85%),
+    inset 0 -1px 1px rgb(255 255 255 / 25%),
+    inset 0 0 18px rgb(255 255 255 / 14%);
+}
+
 /* Popups, menus and dialogs. */
 @utility glass-pop {
   background-color: rgb(255 255 255 / 82%);
@@ -208,7 +226,8 @@
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass-light,
-  .glass-pop {
+  .glass-pop,
+  .glass-frost {
     background-color: rgb(255 255 255 / 96%);
   }
   .glass-dark,
@@ -219,8 +238,10 @@
 
 @media (prefers-reduced-transparency: reduce) {
   .glass-light,
-  .glass-pop {
+  .glass-pop,
+  .glass-frost {
     background-color: #ffffff;
+    background-image: none;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }

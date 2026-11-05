@@ -269,6 +269,7 @@ export const workItems = [
     status: "live-case-study" as const,
     buttonLabel: "Read the case study",
     image: "/work/excel-packaging-1.jpg",
+    liveUrl: "http://excelpackagingandtastefoods.com/",
   },
   {
     id: "hospitality-critic",
@@ -278,6 +279,7 @@ export const workItems = [
     status: "live-case-study" as const,
     buttonLabel: "Read the case study",
     image: "/work/hospitality-critic-1.jpg",
+    liveUrl: "https://hospitalitycriticsolutions.com/",
   },
 ];
 

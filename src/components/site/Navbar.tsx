@@ -48,7 +48,7 @@ export function Navbar() {
           animate={{ maxWidth: 1200 }}
           transition={{ duration: 0.25 }}
           className={cn(
-            "mx-auto flex w-full items-center justify-between gap-3 glass-light rounded-full border border-white/50 pl-4 pr-2 shadow-pill transition-all duration-300",
+            "mx-auto flex w-full items-center justify-between gap-3 glass-frost rounded-full border border-white/45 pl-4 pr-2 transition-all duration-300",
             scrolled ? "py-1.5" : "py-2",
           )}
           aria-label="Main navigation"
@@ -73,8 +73,8 @@ export function Navbar() {
               <SmartLink
                 key={link.href}
                 href={link.href}
-                className="rounded-full px-3.5 py-1.5 text-sm font-medium text-on-light transition-colors hover:bg-secondary hover:text-orange"
-                activeClassName="bg-orange/10 text-orange"
+                className="rounded-full px-3.5 py-1.5 text-sm font-medium text-ink transition-colors hover:bg-white/50 hover:text-[#b8410a]"
+                activeClassName="bg-white/65 text-[#b8410a]"
               >
                 {link.label}
               </SmartLink>
@@ -94,7 +94,7 @@ export function Navbar() {
               onClick={() => setOpen(true)}
               aria-label="Open menu"
               aria-expanded={open}
-              className="grid h-10 w-10 cursor-pointer place-items-center rounded-full text-on-light transition-colors hover:bg-secondary lg:hidden"
+              className="grid h-10 w-10 cursor-pointer place-items-center rounded-full text-ink transition-colors hover:bg-white/50 lg:hidden"
             >
               <Menu className="h-5 w-5" />
             </button>

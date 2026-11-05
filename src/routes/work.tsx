@@ -45,9 +45,14 @@ function WorkPage() {
                   <p className="muted mt-2 text-sm">{item.text}</p>
                   <div className="mt-6 flex flex-1 flex-wrap items-end gap-3">
                     {item.status === "live-case-study" ? (
-                      <ButtonLink href={item.href} size="sm">
-                        {item.buttonLabel}
-                      </ButtonLink>
+                      <>
+                        <ButtonLink href={item.href} size="sm">
+                          {item.buttonLabel}
+                        </ButtonLink>
+                        <ButtonLink href={item.liveUrl} variant="outline-dark" size="sm">
+                          Visit the live site
+                        </ButtonLink>
+                      </>
                     ) : (
                       <>
                         <span className="rounded-full border border-green/40 bg-green/10 px-3 py-1 text-xs font-semibold text-green-ax">
