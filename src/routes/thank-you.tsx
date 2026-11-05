@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { ButtonLink } from "@/components/site/ButtonLink";
-import { FloatingMark } from "@/components/site/FloatingMark";
+import { HeroLogo } from "@/components/site/HeroLogo";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import { Stripes } from "@/components/site/Stripes";
 import { absoluteUrl } from "@/lib/seo";
@@ -46,6 +46,7 @@ const nextSteps = [
 ];
 
 function ThankYouPage() {
+  const heroRef = useRef<HTMLElement>(null);
   const [name, setName] = useState("");
 
   useEffect(() => {
@@ -59,8 +60,11 @@ function ThankYouPage() {
 
   return (
     <main id="main">
-      <section className="tone-dark section-pad pb-16 pt-36 md:pb-20 md:pt-44">
-        <div className="container-apx grid items-center gap-10 md:grid-cols-[1fr_auto]">
+      <section
+        ref={heroRef}
+        className="tone-dark section-pad overflow-hidden pb-20 pt-36 md:pb-24 md:pt-44"
+      >
+        <div className="container-apx grid items-center gap-12 lg:grid-cols-[1.35fr_0.65fr]">
           <div>
             <motion.svg
               viewBox="0 0 64 64"
@@ -101,7 +105,9 @@ function ThankYouPage() {
               </p>
             </Reveal>
           </div>
-          <FloatingMark className="mx-auto hidden w-40 md:block" />
+          <div className="flex justify-center lg:justify-end">
+            <HeroLogo containerRef={heroRef} />
+          </div>
         </div>
       </section>
 

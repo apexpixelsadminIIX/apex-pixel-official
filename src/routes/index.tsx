@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { seo, absoluteUrl } from "@/lib/seo";
-import { motion, useMotionValue, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
+import { HeroLogo } from "@/components/site/HeroLogo";
 import { Testimonials } from "@/components/site/Testimonials";
 import { BrowserFrame } from "@/components/site/BrowserFrame";
 import { ButtonLink } from "@/components/site/ButtonLink";
@@ -128,28 +129,9 @@ function HeadlineLine({
 
 function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const parallaxX = useMotionValue(0);
-  const parallaxY = useMotionValue(0);
-  const x = useSpring(parallaxX, { stiffness: 60, damping: 18 });
-  const y = useSpring(parallaxY, { stiffness: 60, damping: 18 });
-
-  const onPointerMove = (e: React.PointerEvent) => {
-    // Desktop pointer parallax only; never on touch devices or when the
-    // user prefers reduced motion.
-    if (e.pointerType !== "mouse") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const rect = heroRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    const nx = (e.clientX - rect.left) / rect.width - 0.5;
-    const ny = (e.clientY - rect.top) / rect.height - 0.5;
-    parallaxX.set(Math.max(-12, Math.min(12, nx * 24)));
-    parallaxY.set(Math.max(-12, Math.min(12, ny * 24)));
-  };
-
   return (
     <section
       ref={heroRef}
-      onPointerMove={onPointerMove}
       className="tone-dark relative flex min-h-svh items-center overflow-hidden"
     >
       <HeroGridCanvas />
@@ -194,37 +176,7 @@ function Hero() {
           </div>
 
           <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: EASE, delay: 0.3 }}
-              style={{ x, y }}
-              className="w-full max-w-xs"
-            >
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="relative"
-              >
-                <Stripes
-                  count={7}
-                  itemClassName="h-3 w-12"
-                  className="absolute -top-8 -left-6 rotate-[18deg] opacity-80"
-                />
-                <Stripes
-                  count={5}
-                  itemClassName="h-2.5 w-10"
-                  className="absolute bottom-2 -right-4 -rotate-[14deg] opacity-80"
-                />
-                <img
-                  src="/logo-mark.webp"
-                  alt="The Apex Pixels mark: a lion inside a downward triangle"
-                  width={1472}
-                  height={698}
-                  className="relative z-10 w-full drop-shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
-                />
-              </motion.div>
-            </motion.div>
+            <HeroLogo containerRef={heroRef} />
           </div>
         </div>
       </div>
