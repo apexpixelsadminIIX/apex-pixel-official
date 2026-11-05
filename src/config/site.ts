@@ -15,7 +15,7 @@ export const site = {
   // Paste the booking page link here, for example https://cal.com/your-name/15min
   bookingUrl: "https://cal.com/apex-pixels-zktvzc/15min",
   // Web3Forms access key. Prefer setting VITE_WEB3FORMS_KEY in a .env file; this is the fallback.
-  formKey: "",
+  formKey: "78d087bc-4f6a-4ecc-b419-9686862daadf",
   siteUrl: "https://www.theapexpixels.com", // Live domain. Update here, in public/sitemap.xml and in public/robots.txt if it ever changes.
   location: "Chennai, Tamil Nadu",
   footerLine: "© 2026 Apex Pixels. Chennai, Tamil Nadu.",
