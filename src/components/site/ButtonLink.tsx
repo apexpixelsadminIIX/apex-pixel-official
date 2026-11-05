@@ -9,14 +9,14 @@ import { SmartLink } from "./SmartLink";
  * dark ink text. Outline buttons adapt to the section tone (dark or light).
  */
 export const buttonVariants = cva(
-  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange",
+  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-full font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange",
   {
     variants: {
       variant: {
         primary:
-          "bg-orange text-ink shadow-glow-orange hover:-translate-y-0.5 hover:brightness-110 hover:shadow-glow-orange-strong active:translate-y-0 active:brightness-95",
-        "outline-dark": "border border-white/25 text-on-dark hover:bg-white/10",
-        "outline-light": "border border-ink/20 text-on-light hover:bg-ink/5",
+          "btn-glass-solid btn-glass-orange text-ink",
+        "outline-dark": "btn-glass-dark text-on-dark",
+        "outline-light": "btn-glass-light text-on-light",
         "ghost-dark": "text-on-dark-muted hover:text-orange",
         "ghost-light": "text-on-light-muted hover:text-orange",
         bare: "",

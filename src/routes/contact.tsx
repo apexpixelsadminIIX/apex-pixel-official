@@ -247,7 +247,7 @@ function ContactPage() {
                 <button
                   type="button"
                   onClick={() => setStatus("idle")}
-                  className="mt-6 inline-flex h-11 cursor-pointer items-center justify-center rounded-full border border-ink/20 px-6 text-sm font-semibold text-on-light transition-colors hover:bg-ink/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange"
+                  className="mt-6 inline-flex h-11 cursor-pointer items-center justify-center rounded-full btn-glass-light px-6 text-sm font-semibold text-on-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange"
                 >
                   Send another enquiry
                 </button>
@@ -412,7 +412,7 @@ function ContactPage() {
                     <button
                       type="submit"
                       disabled={submitDisabled}
-                      className="inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-orange px-7 text-base font-semibold text-ink shadow-glow-orange transition-all hover:-translate-y-0.5 hover:brightness-110 hover:shadow-glow-orange-strong active:translate-y-0 active:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+                      className="inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full btn-glass-solid btn-glass-orange px-7 text-base font-semibold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
                     >
                       {submitting ? (
                         <>

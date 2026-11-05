@@ -154,7 +154,7 @@ export function Navbar() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-full bg-green px-4 py-3 text-sm font-semibold text-white"
+                  className="flex items-center justify-center gap-2 btn-glass-solid btn-glass-green rounded-full px-4 py-3 text-sm font-semibold text-white"
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   WhatsApp

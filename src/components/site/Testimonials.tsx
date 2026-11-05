@@ -31,7 +31,7 @@ export function Testimonials() {
                     type="button"
                     onClick={() => scrollBy(dir)}
                     aria-label={dir === -1 ? "Previous testimonials" : "Next testimonials"}
-                    className="grid h-10 w-10 place-items-center rounded-full border border-ink/15 bg-white transition-colors hover:border-orange hover:text-orange"
+                    className="grid h-10 w-10 place-items-center rounded-full btn-glass-light hover:text-orange"
                   >
                     {dir === -1 ? (
                       <ChevronLeft className="h-5 w-5" />
