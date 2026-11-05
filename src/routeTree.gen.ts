@@ -17,6 +17,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as WorkExcelPackagingRouteImport } from './routes/work_.excel-packaging'
+import { Route as WorkHospitalityCriticRouteImport } from './routes/work_.hospitality-critic'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +59,11 @@ const WorkExcelPackagingRoute = WorkExcelPackagingRouteImport.update({
   path: '/work/excel-packaging',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkHospitalityCriticRoute = WorkHospitalityCriticRouteImport.update({
+  id: '/work_/hospitality-critic',
+  path: '/work/hospitality-critic',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
   '/work/excel-packaging': typeof WorkExcelPackagingRoute
+  '/work/hospitality-critic': typeof WorkHospitalityCriticRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
   '/work/excel-packaging': typeof WorkExcelPackagingRoute
+  '/work/hospitality-critic': typeof WorkHospitalityCriticRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
   '/work_/excel-packaging': typeof WorkExcelPackagingRoute
+  '/work_/hospitality-critic': typeof WorkHospitalityCriticRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/work'
     | '/work/excel-packaging'
+    | '/work/hospitality-critic'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/work'
     | '/work/excel-packaging'
+    | '/work/hospitality-critic'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/work'
     | '/work_/excel-packaging'
+    | '/work_/hospitality-critic'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   WorkRoute: typeof WorkRoute
   WorkExcelPackagingRoute: typeof WorkExcelPackagingRoute
+  WorkHospitalityCriticRoute: typeof WorkHospitalityCriticRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkExcelPackagingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work_/hospitality-critic': {
+      id: '/work_/hospitality-critic'
+      path: '/work/hospitality-critic'
+      fullPath: '/work/hospitality-critic'
+      preLoaderRoute: typeof WorkHospitalityCriticRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   WorkRoute: WorkRoute,
   WorkExcelPackagingRoute: WorkExcelPackagingRoute,
+  WorkHospitalityCriticRoute: WorkHospitalityCriticRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

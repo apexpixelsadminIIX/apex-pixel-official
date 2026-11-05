@@ -274,10 +274,10 @@ export const workItems = [
     id: "hospitality-critic",
     name: "Hospitality Critic Solutions",
     text: "A website for a Chennai hospitality training and consulting company.",
-    href: "https://hospitalitycriticsolutions.com/",
-    status: "coming-soon" as const,
-    buttonLabel: "Visit the site",
-    image: "/work/hospitality-critic.jpg",
+    href: "/work/hospitality-critic",
+    status: "live-case-study" as const,
+    buttonLabel: "Read the case study",
+    image: "/work/hospitality-critic-1.jpg",
   },
 ];
 
@@ -455,8 +455,77 @@ export const caseStudy = {
   screenshotLabels: ["Home", "E-Catalog", "Cleaning and Hospitality", "About", "Contact and enquiry", "Admin dashboard"],
   nextProject: {
     name: "Hospitality Critic Solutions",
-    url: "https://hospitalitycriticsolutions.com/",
-    badge: "Case study coming soon",
+    href: "/work/hospitality-critic",
+    text: "A website for a Chennai hospitality training and consulting company.",
+    badge: "Next case study",
+    label: "Read the case study",
+  },
+};
+
+export type CaseStudy = typeof caseStudy;
+
+export const hcsCaseStudy: CaseStudy = {
+  slug: "hospitality-critic",
+  title: "Hospitality Critic Solutions",
+  tags: ["Business website", "Eight pages", "Enquiry form"],
+  liveUrl: "https://hospitalitycriticsolutions.com/",
+  client:
+    "Hospitality Critic Solutions is a Chennai-based training, consulting and skill development company, led by its founder, Nagarajan Sankar. Built on 26 years of hotel and facility operations experience, it trains housekeeping, front office, food and beverage, kitchen and safety and security teams for hotels, resorts, hospitals, facility companies, colleges and government bodies.",
+  brief:
+    "The client needed a credible website that explains its services clearly, shows the sectors it works with, puts its licensing and clients on record, and gives organisations a simple way to start an enquiry.",
+  built: [
+    {
+      icon: "layers",
+      text: "An eight-page website: Home, About, Services, Organizations, Methodologies, Certifications, Clients and Contact.",
+    },
+    {
+      icon: "grid",
+      text: "Eleven services presented as numbered cards, from consulting and on-the-job training to mystery audits, SOP development and train-the-trainer programmes, with a prompt for visitors who are not sure which one fits.",
+    },
+    {
+      icon: "building",
+      text: "A sector page for hotels and resorts, hospitals, facility management, colleges and government bodies, each with its own list of what is trained.",
+    },
+    {
+      icon: "graduation",
+      text: "A methodology page organised by department module, with photographs from real training sessions.",
+    },
+    {
+      icon: "award",
+      text: "A certifications page showing the founder's World Skill Council licence, so employers can see the credentials for themselves.",
+    },
+    {
+      icon: "images",
+      text: "A clients page with a photograph, logo, sector and location for each client, including state guest houses, resorts, residencies and facility companies.",
+    },
+    {
+      icon: "clipboard",
+      text: "An enquiry form that opens as a pop-up from any page and asks for the organisation, departments to be trained, number of participants and preferred dates.",
+    },
+    {
+      icon: "smartphone",
+      text: "A responsive layout, with a WhatsApp button on every page.",
+    },
+  ],
+  look: "Built on the client's own brand colours of navy, green and gold, set on a warm cream background, with an italic serif accent on key words in the headlines.",
+  screenshots: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `/work/hospitality-critic-${n}.jpg`),
+  screenshotLabels: [
+    "Home",
+    "About",
+    "Services",
+    "Organizations",
+    "Methodologies",
+    "Certifications",
+    "Clients",
+    "Contact",
+    "Enquiry form",
+  ],
+  nextProject: {
+    name: "Excel Packaging and Taste Foods",
+    href: "/work/excel-packaging",
+    text: "A product catalogue and enquiry website for a Chennai packaging supplier.",
+    badge: "Another case study",
+    label: "Read the case study",
   },
 };
 
