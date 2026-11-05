@@ -48,7 +48,7 @@ export function Navbar() {
           animate={{ maxWidth: 1200 }}
           transition={{ duration: 0.25 }}
           className={cn(
-            "mx-auto flex w-full items-center justify-between gap-3 glass-frost rounded-full border border-white/45 pl-4 pr-2 transition-all duration-300",
+            "mx-auto flex w-full items-center justify-between gap-3 glass-frost rounded-full border border-white/45 pl-7 pr-5 transition-all duration-300",
             scrolled ? "py-1.5" : "py-2",
           )}
           aria-label="Main navigation"
