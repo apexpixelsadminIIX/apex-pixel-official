@@ -1,24 +1,28 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Outlet, useRouterState } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
 
 /**
- * Route transitions: a quick fade and 12px slide (250ms) on navigation.
- * AnimatePresence with initial={false} keeps the first render (and SSR)
- * static; only actual route changes animate.
+ * Route transitions: the new page fades in with a small slide-up (250ms).
+ * There is deliberately no exit animation. An exiting wrapper re-renders the
+ * router's current Outlet, which made the old page flash (or reload) before
+ * the new one appeared. The first render (and SSR) stays static.
  */
 export function AnimatedOutlet() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const hydrated = useRef(false);
+  useEffect(() => {
+    hydrated.current = true;
+  }, []);
 
   return (
-    <AnimatePresence initial={false} mode="wait">
-      <motion.div
-        key={pathname}
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-      >
-        <Outlet />
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      key={pathname}
+      initial={hydrated.current ? { opacity: 0, y: 12 } : false}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+    >
+      <Outlet />
+    </motion.div>
   );
 }
