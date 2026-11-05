@@ -467,7 +467,7 @@ export type CaseStudy = typeof caseStudy;
 export const hcsCaseStudy: CaseStudy = {
   slug: "hospitality-critic",
   title: "Hospitality Critic Solutions",
-  tags: ["Business website", "Eight pages", "Enquiry form"],
+  tags: ["Business website", "Eight pages", "Admin panel"],
   liveUrl: "https://hospitalitycriticsolutions.com/",
   client:
     "Hospitality Critic Solutions is a Chennai-based training, consulting and skill development company, led by its founder, Nagarajan Sankar. Built on 26 years of hotel and facility operations experience, it trains housekeeping, front office, food and beverage, kitchen and safety and security teams for hotels, resorts, hospitals, facility companies, colleges and government bodies.",
@@ -501,6 +501,10 @@ export const hcsCaseStudy: CaseStudy = {
     {
       icon: "clipboard",
       text: "An enquiry form that opens as a pop-up from any page and asks for the organisation, departments to be trained, number of participants and preferred dates.",
+    },
+    {
+      icon: "lock",
+      text: "A password-protected admin area where the client's team edits the website's text, replaces images and media, and updates the social media content shown on the site, without needing a developer.",
     },
     {
       icon: "smartphone",
