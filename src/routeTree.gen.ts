@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as WorkExcelPackagingRouteImport } from './routes/work_.excel-packaging'
 import { Route as WorkHospitalityCriticRouteImport } from './routes/work_.hospitality-critic'
@@ -49,6 +50,11 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThankYouRoute = ThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
   path: '/work',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/thank-you': typeof ThankYouRoute
   '/work': typeof WorkRoute
   '/work/excel-packaging': typeof WorkExcelPackagingRoute
   '/work/hospitality-critic': typeof WorkHospitalityCriticRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/thank-you': typeof ThankYouRoute
   '/work': typeof WorkRoute
   '/work/excel-packaging': typeof WorkExcelPackagingRoute
   '/work/hospitality-critic': typeof WorkHospitalityCriticRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/thank-you': typeof ThankYouRoute
   '/work': typeof WorkRoute
   '/work_/excel-packaging': typeof WorkExcelPackagingRoute
   '/work_/hospitality-critic': typeof WorkHospitalityCriticRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/services'
     | '/terms'
+    | '/thank-you'
     | '/work'
     | '/work/excel-packaging'
     | '/work/hospitality-critic'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/services'
     | '/terms'
+    | '/thank-you'
     | '/work'
     | '/work/excel-packaging'
     | '/work/hospitality-critic'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/services'
     | '/terms'
+    | '/thank-you'
     | '/work'
     | '/work_/excel-packaging'
     | '/work_/hospitality-critic'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
+  ThankYouRoute: typeof ThankYouRoute
   WorkRoute: typeof WorkRoute
   WorkExcelPackagingRoute: typeof WorkExcelPackagingRoute
   WorkHospitalityCriticRoute: typeof WorkHospitalityCriticRoute
@@ -191,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/thank-you': {
+      id: '/thank-you'
+      path: '/thank-you'
+      fullPath: '/thank-you'
+      preLoaderRoute: typeof ThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/work': {
       id: '/work'
       path: '/work'
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
+  ThankYouRoute: ThankYouRoute,
   WorkRoute: WorkRoute,
   WorkExcelPackagingRoute: WorkExcelPackagingRoute,
   WorkHospitalityCriticRoute: WorkHospitalityCriticRoute,

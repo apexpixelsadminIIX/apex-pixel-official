@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { seo } from "@/lib/seo";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
@@ -106,6 +106,7 @@ function ContactPage() {
   const { package: packageParam } = Route.useSearch();
   const presetPackage = packageParam && packageIds.includes(packageParam) ? packageParam : "unsure";
 
+  const navigate = useNavigate();
   const [status, setStatus] = useState<Status>("idle");
   const [cooldown, setCooldown] = useState(0);
   const [errorWhatsapp, setErrorWhatsapp] = useState(whatsappUrl);
@@ -192,6 +193,11 @@ function ContactPage() {
       });
       const result = (await response.json()) as { success?: boolean };
       if (!response.ok || !result.success) throw new Error("Submit failed");
+      try {
+        sessionStorage.setItem("apx-enquiry-name", values.fullName.trim());
+      } catch {
+        /* storage can be blocked; the thank-you page works without it */
+      }
       setStatus("success");
       reset({
         fullName: "",
@@ -204,6 +210,7 @@ function ContactPage() {
         message: "",
         botcheck: "",
       });
+      void navigate({ to: "/thank-you" });
     } catch {
       setErrorWhatsapp(waLink(enquiryMessage(values)));
       setStatus("error");
