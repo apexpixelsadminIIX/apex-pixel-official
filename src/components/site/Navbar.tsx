@@ -73,8 +73,8 @@ export function Navbar() {
               <SmartLink
                 key={link.href}
                 href={link.href}
-                className="rounded-full px-3.5 py-1.5 text-sm font-medium text-ink transition-colors hover:bg-ink/10"
-                activeClassName="bg-ink text-white hover:bg-ink"
+                className="rounded-full border border-transparent px-3.5 py-1.5 text-sm font-medium text-ink transition-colors hover:bg-ink/10"
+                activeClassName="border-white/30 bg-[rgb(22_30_96/72%)] text-white shadow-[inset_0_1px_0_rgb(255_255_255/35%),0_6px_14px_-8px_rgb(22_30_96/60%)] backdrop-blur-md saturate-150 hover:bg-[rgb(22_30_96/72%)]"
               >
                 {link.label}
               </SmartLink>
