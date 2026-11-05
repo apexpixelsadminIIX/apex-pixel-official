@@ -9,7 +9,14 @@ import { useEffect, useRef } from "react";
  * the new one appeared. The first render (and SSR) stays static.
  */
 export function AnimatedOutlet() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  // resolvedLocation only changes once the new page has finished loading.
+  // Keying on location.pathname changed the key as soon as a link was clicked,
+  // while the Outlet still showed the old page (its code chunk had not loaded
+  // yet), so the old page re-animated in before the new one replaced it. That
+  // happened on the first visit to each page, until its chunk was cached.
+  const pathname = useRouterState({
+    select: (s) => (s.resolvedLocation ?? s.location).pathname,
+  });
   const hydrated = useRef(false);
   useEffect(() => {
     hydrated.current = true;
