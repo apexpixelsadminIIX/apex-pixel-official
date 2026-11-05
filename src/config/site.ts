@@ -269,7 +269,7 @@ export const workItems = [
     status: "live-case-study" as const,
     buttonLabel: "Read the case study",
     image: "/work/excel-packaging-1.jpg",
-    liveUrl: "http://excelpackagingandtastefoods.com/",
+    liveUrl: "https://excelpackagingandtastefoods.com/",
   },
   {
     id: "hospitality-critic",
@@ -415,7 +415,7 @@ export const discoveryNote = {
   payment: "Payment is by milestone, with the last part due at go-live.",
 };
 
-export const excelLiveUrl = "http://excelpackagingandtastefoods.com/";
+export const excelLiveUrl = "https://excelpackagingandtastefoods.com/";
 
 export const caseStudy = {
   slug: "excel-packaging",
