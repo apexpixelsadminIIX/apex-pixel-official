@@ -80,7 +80,7 @@ export const packages: Package[] = [
     features: [
       "Up to 3 pages, or one long page",
       "Custom design in the client's colours and logo, responsive on every screen",
-      "Enquiry form to email, WhatsApp button and Google Maps",
+      "Enquiry form to email and a WhatsApp button",
       "Basic search setup",
       "2 revision rounds and a recorded handover video",
       "1 month of free bug fixes",
@@ -98,7 +98,7 @@ export const packages: Package[] = [
       "Up to 7 pages with a custom design",
       "Service or portfolio pages and an image gallery",
       "Enquiries written into a Google Sheet, with an email alert",
-      "WhatsApp button, Google Maps and a link to the Google Business Profile",
+      "WhatsApp button and a link to the Google Business Profile",
       "Search setup and analytics setup",
       "3 revision rounds, written approvals at each stage and a 60-minute online walkthrough",
       "3 months of free bug fixes",
@@ -367,7 +367,6 @@ export const serviceSections: ServiceSection[] = [
       "Enquiry form and WhatsApp button",
       "Service or product pages",
       "Image galleries",
-      "Google Maps",
       "Basic search engine setup",
       "Analytics setup, so you can see how the site is doing",
       "Online store with a cart and one payment gateway, in the Professional package (Option B)",
@@ -576,10 +575,6 @@ export const founder = {
   photo: "/manish.jpg", // Optional; hidden until the file is uploaded.
   text: "I started Apex Pixels to build websites and software that businesses can be proud of and actually use. I work directly with every client, from the first call to the day the project goes live.",
 };
-
-export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  site.address,
-)}`;
 
 export const needOptions = [
   "Website",

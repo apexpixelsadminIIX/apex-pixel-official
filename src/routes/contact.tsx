@@ -23,7 +23,6 @@ import {
 import {
   bookingHref,
   founder,
-  mapsUrl,
   needOptions,
   packages,
   site,
@@ -526,11 +525,6 @@ function ContactPage() {
               </p>
               <p className="muted mt-1 text-sm">{site.address}</p>
               <p className="muted mt-3 text-sm">Replies on WhatsApp are usually quickest.</p>
-              <div className="mt-4">
-                <ButtonLink href={mapsUrl} variant="outline-light" size="sm">
-                  View on Google Maps
-                </ButtonLink>
-              </div>
             </StaggerItem>
 
             <p className="muted px-1 text-xs">

@@ -3,12 +3,11 @@ import { seo } from "@/lib/seo";
 import { OptionalImage } from "@/components/site/OptionalImage";
 import { ClipboardCheck, FileSignature, IndianRupee, MessageCircle, Repeat2 } from "lucide-react";
 
-import { ButtonLink } from "@/components/site/ButtonLink";
 import { ContactTrio } from "@/components/site/ContactTrio";
 import { FloatingMark } from "@/components/site/FloatingMark";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import { Stripes } from "@/components/site/Stripes";
-import { founder, lionStory, mapsUrl, principles, site } from "@/config/site";
+import { founder, lionStory, principles, site } from "@/config/site";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -128,11 +127,6 @@ function AboutPage() {
                 {site.email}
               </a>
             </p>
-            <div className="mt-6">
-              <ButtonLink href={mapsUrl} size="sm">
-                View on Google Maps
-              </ButtonLink>
-            </div>
           </Reveal>
           <Reveal className="mt-16">
             <ContactTrio tone="dark" />
